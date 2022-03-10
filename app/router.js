@@ -10,6 +10,8 @@ Router.map(function () {
   this.route('about');
   this.route('contact');
   this.route('house');
-  this.route('house_img', { path: 'home_img' });
+  this.route('house_img', { path: 'homeImg' });
+  this.route('login');
+  this.route('register');
   this.route('review');
 });
