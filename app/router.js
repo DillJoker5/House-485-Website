@@ -11,6 +11,7 @@ Router.map(function () {
   this.route('contact');
   this.route('house');
   this.route('house_img', { path: 'homeImg' });
+  this.route('home');
   this.route('login');
   this.route('register');
   this.route('review');
