@@ -41,7 +41,32 @@ module ('Acceptance | house 485', function (hooks) {
         assert.equal(currentURL(), '/');
     });
 
-    test('visiting about page', async (assert) => {});
+    test('visiting about page', async (assert) => {
+        await visit('/about');
+
+        assert.dom('nav').exists();
+        assert.dom('nav menu-about').hasText('About Us');
+
+        assert.equal(currentURL(), 'contact');
+        assert.dom('h2').hasText('About Dylan\' Milwaukee Housing');
+        assert.dom('img').exists();
+        assert.dom('h4').hasText('Purpose: '); // insert here
+        assert.dom('h4').hasText('Description of Project: ');
+        assert.dom('ul').exists();
+        assert.dom('h4').hasText('API Used: Realty in US');
+        assert.dom('h4').hasText('Languages Used: JavaScript, Python, SQL');
+        assert.dom('h4').hasText('Frameworks / Libraries Used: ');
+        assert.dom('ol').exists();
+        assert.dom('div').exists();
+        assert.dom('p').hasText('Please click here to contact our team with any questions or concerns!');
+
+        assert.dom('.app a.button').hasText('Contact Us');
+        await click('.app a.button');
+        assert.equal(currentURL(), '/contact');
+
+        await click ('nav a.menu-index');
+        assert.equal(currentURL(), '/');
+    });
 
     test('navigating using the nav-bar', async (assert) => {
         await visit('/');
