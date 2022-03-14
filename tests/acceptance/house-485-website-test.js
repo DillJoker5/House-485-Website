@@ -16,7 +16,7 @@ module ('Acceptance | house 485', function (hooks) {
         assert.dom('nav a.menu-login').hasText('Login');
 
         assert.dom('h2').hasText('Welcome to Dylan\'s Milwaukee Housing'); //breaks here
-        assert.dom('p').hasText('We hop you find everything you are looking for in a new house in the Milwaukee Area!');
+        assert.dom('p').hasText('We hope you find everything you are looking for in a new home in the Milwaukee Area!');
         assert.dom('.app').exists();
     });
 
@@ -27,11 +27,11 @@ module ('Acceptance | house 485', function (hooks) {
         assert.dom('nav a.menu-contact').hasText('Contact Us');
 
         assert.equal(currentURL(), 'contact');
+        assert.dom('img').exists();
         assert.dom('h2').hasText('Contact Us');
         assert.dom('h4').hasText('We would love to hear any feedback or questions from our users! Please feel free to contact us with any questions, concerns, or recommendations with the below phone number or email!');
         assert.dom('address').exists();
         assert.dom('p').hasText('2520 Iris Ct Racine, WI 53402');
-        assert.dom('img').exists();
 
         assert.dom('.app a.button').hasText('About Us');
         await click('.app a.button');
