@@ -1,4 +1,4 @@
-/*import Route from '@ember/routing/route';
+import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
 export default class HouseRoute extends Route {
@@ -6,4 +6,4 @@ export default class HouseRoute extends Route {
     async model() {
         return this.store.findAll('house');
     }
-}*/
+}
