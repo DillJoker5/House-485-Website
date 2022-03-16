@@ -15,7 +15,7 @@ module ('Acceptance | house 485', function (hooks) {
         assert.dom('nav a.menu-contact').hasText('Contact Us');
         assert.dom('nav a.menu-login').hasText('Login');
 
-        assert.dom('h2').hasText('Welcome to Dylan\'s Milwaukee Housing'); //breaks here
+        assert.dom('h2').hasText('Welcome to Dylan\'s Milwaukee Housing');
         assert.dom('p').hasText('We hope you find everything you are looking for in a new home in the Milwaukee Area!');
         assert.dom('.app').exists();
     });
@@ -45,12 +45,13 @@ module ('Acceptance | house 485', function (hooks) {
         await visit('/about');
 
         assert.dom('nav').exists();
-        assert.dom('nav menu-about').hasText('About Us');
+        assert.dom('nav a.menu-about').hasText('About Us');
 
-        assert.equal(currentURL(), 'contact');
-        assert.dom('h2').hasText('About Dylan\' Milwaukee Housing');
+        assert.equal(currentURL(), '/about');
+        assert.dom('h2').hasText('About Dylan\'s Milwaukee Housing');
         assert.dom('img').exists();
-        assert.dom('h4').hasText('Purpose: '); // insert here
+        assert.dom('h4').hasText('Class: CSC 485')
+        assert.dom('h4').hasText('Purpose: Display Local Milwaukee Houses while showing off ability to learn new technologies quickly.'); // insert here
         assert.dom('h4').hasText('Description of Project: ');
         assert.dom('ul').exists();
         assert.dom('h4').hasText('API Used: Realty in US');
