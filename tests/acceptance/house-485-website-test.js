@@ -92,4 +92,17 @@ module ('Acceptance | house 485', function (hooks) {
         await click('nav a.menu-index');
         assert.equal(currentURL(), '/');
     });
+
+    test('visting Login Page', async (assert) => {
+        await visit('/login');
+        assert.equal(currentURL(), '/login');
+
+        assert.dom('nav').exists();
+        assert.dom('nav a.menu-login').hasText('Login');
+
+        assert.dom('login').exists();
+
+        await click('nav a.menu-index');
+        assert.equal(currentURL(), '/');
+    });
 });
