@@ -47,16 +47,18 @@ module ('Acceptance | house 485', function (hooks) {
         assert.dom('nav').exists();
         assert.dom('nav a.menu-about').hasText('About Us');
 
+        let h4Elements = document.querySelectorAll('h4');
+
         assert.equal(currentURL(), '/about');
         assert.dom('h2').hasText('About Dylan\'s Milwaukee Housing');
         assert.dom('img').exists();
-        assert.dom('h4').hasText('Class: CSC 485')
-        assert.dom('h4').hasText('Purpose: Display Local Milwaukee Houses while showing off ability to learn new technologies quickly.'); // insert here
-        assert.dom('h4').hasText('Description of Project: ');
+        assert.dom(h4Elements[0]).hasText('Class: CSC 485')
+        assert.dom(h4Elements[1]).hasText('Purpose: Display Local Milwaukee Houses while showing off ability to learn new technologies quickly.'); // insert here
+        assert.dom(h4Elements[2]).hasText('Description of Project: ');
         assert.dom('ul').exists();
-        assert.dom('h4').hasText('API Used: Realty in US');
-        assert.dom('h4').hasText('Languages Used: JavaScript, Python, SQL');
-        assert.dom('h4').hasText('Frameworks / Libraries Used: ');
+        assert.dom(h4Elements[3]).hasText('API Used: Realty in US');
+        assert.dom(h4Elements[4]).hasText('Languages Used: JavaScript, Python, SQL');
+        assert.dom(h4Elements[5]).hasText('Frameworks / Libraries Used: ');
         assert.dom('ol').exists();
         assert.dom('div').exists();
         assert.dom('p').hasText('Please click here to contact our team with any questions or concerns!');
