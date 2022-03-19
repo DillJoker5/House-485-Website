@@ -91,7 +91,7 @@ module('Integration | Component | Register', function (hooks) {
         await render(hbs`<Register />`);
         assert.equal(currentURL(), '/register');
 
-        await click('.register-login-div-button');
+        await click('.register-login-div a.button');
         assert.equal(currentURL(), '/login');
     });
 });

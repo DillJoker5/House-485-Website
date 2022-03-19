@@ -1,16 +1,15 @@
-<div>
+<div class="login">
+    <p>No Account: </p><LinkTo @route="register" class="button">Register Here</LinkTo>
+    <br>
     <h1>Log into your account</h1>
     <br>
-    <form autocomplete="off" action="loginView.js" method="post">
+    <form autocomplete="off" action="login.js" method="post" class="login-form">
         <label for="loginUserName">UserName: </label>
         <input type="text" id="loginUserName" value="dylanC101"/>
         <br>
         <label for="loginPassword">Password: </label>
         <input type="text" id="loginPassword" value="dfgh123!&"/>
         <br>
-        <input type="submit" id="submitButton" value="Login" />
+        <input type="submit" id="submitButton" value="Login" class="button" />
     </form>
-    <p>No Account:<LinkTo @route="register" class="button">Register Here</LinkTo></p>
 </div>
-
-<!-- Style form -->

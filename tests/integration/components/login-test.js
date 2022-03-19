@@ -9,6 +9,9 @@ module('Integration | Component | Login', function (hooks) {
     test('it renders the content', async function (assert) {
         await render(hbs`<Login />`);
 
+        assert.dom('p').hasText('No Account:');
+        assert.dom('a.button').hasText('Register');
+
         let labelElements = document.querySelectorAll('label');
         let inputElements = document.querySelectorAll('input');
         assert.dom('h1').hasText('Log into your account');
@@ -18,9 +21,6 @@ module('Integration | Component | Login', function (hooks) {
         assert.dom(labelElements[1]).hasText('Password: ');
         assert.dom(inputElements[1]).exists();
         assert.dom(inputElements[2]).hasValue('Login');
-
-        assert.dom('p').hasText('No Account:');
-        assert.dom('a.button').hasText('Register');
     });
 
     test('login button not enabled when username is not filled in', async function (assert) {
