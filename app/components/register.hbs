@@ -1,5 +1,10 @@
-<form>
+<div>
+    <div>
+        <h3>Already Have an Account?<LinkTo @route="login" class="button" >Login</LinkTo></h3>
+    </div>
+    <br>
     <h1>Register your account below</h1>
+    <p class="hidden">Successfully Created Account!</p>
     <br>
     <form autocomplete="off" action="register.js" method="post">
         <label for="registerUserName">UserName: </label>
@@ -14,6 +19,7 @@
         <label for="registerPassword">Password: </label>
         <input type="text" id="registerPassword" />
     </form>
-</form>
+    <input type="submit" id="createAccountButton" class="button" value="Create Account" />
+</div>
 
 <!-- Style form -->

@@ -105,4 +105,16 @@ module ('Acceptance | house 485', function (hooks) {
         await click('nav a.menu-index');
         assert.equal(currentURL(), '/');
     });
+
+    test('visiting Register Page', async (assert) => {
+        await visit('register');
+        assert.equal(currentURL(), '/register');
+
+        assert.dom('nav').exists();
+
+        assert.dom('register').exists();
+
+        await click('nav a.menu-index');
+        assert.equal(currentURL(), '/');
+    });
 });
