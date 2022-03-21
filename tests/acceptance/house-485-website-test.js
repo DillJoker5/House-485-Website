@@ -118,7 +118,7 @@ module('Acceptance | house 485', function (hooks) {
     assert.dom('nav').exists();
     assert.dom('nav a.menu-login').hasText('Login');
 
-    assert.dom('login').exists();
+    assert.dom('.login').exists();
 
     await click('nav a.menu-index');
     assert.equal(currentURL(), '/');
@@ -126,11 +126,11 @@ module('Acceptance | house 485', function (hooks) {
 
   test('visiting Register Page', async (assert) => {
     await visit('register');
-    assert.equal(currentURL(), '/register');
+    assert.equal(currentURL(), 'register');
 
     assert.dom('nav').exists();
 
-    assert.dom('register').exists();
+    assert.dom('.register').exists();
 
     await click('nav a.menu-index');
     assert.equal(currentURL(), '/');
