@@ -19,7 +19,10 @@ module('Integration | Component | Login', function (hooks) {
   test('login button not enabled when username is not filled in', async function (assert) {
     await render(hbs`<Login />`);
 
-    this.$('input')[1].val('passwordTest');
+    let inputElements = document.querySelectorAll('input');
+
+    inputElements[19].value = '';
+    inputElements[20].value = 'passwordTest';
 
     assert.dom('.login-form-login-button').isDisabled();
   });
@@ -27,7 +30,10 @@ module('Integration | Component | Login', function (hooks) {
   test('login button not enabled when password is not filled in', async function (assert) {
     await render(hbs`<Login />`);
 
-    this.$('input')[0].val('usernameTest');
+    let inputElements = document.querySelectorAll('input');
+
+    inputElements[19].value = 'usernameTest';
+    inputElements[20].value = ''; 
 
     assert.dom('.login-form-login-button').isDisabled();
   });
@@ -35,8 +41,10 @@ module('Integration | Component | Login', function (hooks) {
   test('valid login', async function (assert) {
     await render(hbs`<Login />`);
 
-    this.$('input')[0].val('usernameTest'); // insert valid here
-    this.$('input')[1].val('passwordTest'); // insert valid here
+    let inputElements = document.querySelectorAll('input');
+
+    inputElements[19].value = 'usernameTest'; // insert valid here
+    inputElements[20].value = 'passwordTest'; // insert valid here
 
     assert.dom('.login-form-login-button').isNotDisabled();
 
