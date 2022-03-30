@@ -5,11 +5,11 @@ import { action } from '@ember/object';
 
 export default class RegisterComponent extends Component {
     @service router;
-    @tracked username = this.username;
-    @tracked password = this.password;
+    @tracked username = this.get('login.username');
+    @tracked password = this.get('login.password');
 
     get isDisabled() {
-        if(username === '' || password === '') {
+        if(this.username === '' || this.password === '') {
             return "true"
             console.log('true')
         }

@@ -1,14 +1,14 @@
 <div class="login">
-    <p>No Account: </p><LinkTo @route="register" class="button">Register Here</LinkTo>
+    <p>No Account: </p><LinkTo @route="register" class="button" @model={{@register}}>Register Here</LinkTo>
     <br>
     <h1>Log into your account</h1>
     <br>
     <form autocomplete="off" action="" method="post" class="login-form">
         <label for="loginUserName">UserName: </label>
-        <input type="text" id="loginUserName" value="dylanC101" required/>
+        <input type="text" id="loginUserName" value={{@login.username}} required/>
         <br>
         <label for="loginPassword">Password: </label>
-        <input type="text" id="loginPassword" value="dfgh123!&" required/>
+        <input type="text" id="loginPassword" value={{@login.password}} required/>
         <br>
         <input type="submit" id="submitButton" value="Login" class="button" disabled={{this.isDisabled}} />
     </form>
