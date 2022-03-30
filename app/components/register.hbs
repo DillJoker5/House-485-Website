@@ -8,16 +8,16 @@
     <br>
     <form autocomplete="off" action="" method="post" class="register-form">
         <label for="registerUserName">UserName: </label>
-        <input type="text" id="registerUserName" value={{@register.username}} />
+        <input type="text" id="registerUserName" value={{@register.username}} required />
         <br>
         <label for="registerName">Name: </label>
-        <input type="text" id="registerName" value={{@register.name}}/>
+        <input type="text" id="registerName" value={{@register.name}} required/>
         <br>
         <label for="registerEmail">Email: </label>
-        <input type="text" id="registerEmail" value={{@register.email}} />
+        <input type="text" id="registerEmail" value={{@register.email}} required />
         <br>
         <label for="registerPassword">Password: </label>
-        <input type="text" id="registerPassword" value={{@register.password}} />
+        <input type="text" id="registerPassword" value={{@register.password}} required/>
     </form>
-    <input type="submit" id="createAccountButton" class="button" value="Create Account" />
+    <input type="submit" id="createAccountButton" class="button" value="Create Account" disabled={{this.isDisabled}}/>
 </div>
