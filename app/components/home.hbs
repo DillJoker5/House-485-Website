@@ -1,1 +1,12 @@
-{{yield}}
+<div class="">
+    <label>
+        <p>Here's to finding your future home!</p>
+        <Input @value={{this.searchString}} class="light" />
+    </label>
+
+    <SearchBar @houses={{@houses}} @searchString={{this.searchString}} as |results|>
+        {{#each results as |house|}}
+            <li><House @house={{house}} /></li>
+        {{#each}}
+    </SearchBar>
+</div>
