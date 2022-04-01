@@ -1,0 +1,132 @@
+[
+    {
+        "properties": [
+            {
+                "property_id": "",
+                "price": "",
+                "address": {
+                    "city": "",
+                    "country": "",
+                    "county": "",
+                    "lat": "",
+                    "line": "",
+                    "postal_code": "",
+                    "state_code": "",
+                    "state": "",
+                    "lon": ""
+                },
+                "rdc_web_url": "",
+                "description": "",
+                "photos": [
+                    {
+                        "href": ""
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "properties": [
+            {
+                "property_id": "",
+                "price": "",
+                "address": {
+                    "city": "",
+                    "country": "",
+                    "county": "",
+                    "lat": "",
+                    "line": "",
+                    "postal_code": "",
+                    "state_code": "",
+                    "state": "",
+                    "lon": ""
+                },
+                "rdc_web_url": "",
+                "description": "",
+                "photos": [
+                    {
+                        "href": ""
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "properties": [
+            {
+                "property_id": "",
+                "price": "",
+                "address": {
+                    "city": "",
+                    "country": "",
+                    "county": "",
+                    "lat": "",
+                    "line": "",
+                    "postal_code": "",
+                    "state_code": "",
+                    "state": "",
+                    "lon": ""
+                },
+                "rdc_web_url": "",
+                "description": "",
+                "photos": [
+                    {
+                        "href": ""
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "properties": [
+            {
+                "property_id": "",
+                "price": "",
+                "address": {
+                    "city": "",
+                    "country": "",
+                    "county": "",
+                    "lat": "",
+                    "line": "",
+                    "postal_code": "",
+                    "state_code": "",
+                    "state": "",
+                    "lon": ""
+                },
+                "rdc_web_url": "",
+                "description": "",
+                "photos": [
+                    {
+                        "href": ""
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "properties": [
+            {
+                "property_id": "",
+                "price": "",
+                "address": {
+                    "city": "",
+                    "country": "",
+                    "county": "",
+                    "lat": "",
+                    "line": "",
+                    "postal_code": "",
+                    "state_code": "",
+                    "state": "",
+                    "lon": ""
+                },
+                "rdc_web_url": "",
+                "description": "",
+                "photos": [
+                    {
+                        "href": ""
+                    }
+                ]
+            }
+        ]
+    }
+]

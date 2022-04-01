@@ -1,1 +1,35 @@
-{{yield}}
+<article class="house">
+    <House::Image 
+        src={{@house.image}}
+        alt="A picture of {{@house.address}}"
+    />
+    <div class="details">
+        <h3>
+            <LinkTo @route="house" @model={{@house}}>
+                {{@house.address}}
+            </LinkTo>
+        </h3>
+        <div class="detail index">
+            {{@house.index}}
+        </div>
+        <div class="detail address">
+            <span>{{@house.address}}</span>
+        </div>
+        <div class="detail price">
+            <span>{{@house.price}}</span>
+        </div>
+        <div class="detail location">
+            <span>{{@house.location}}</span>
+        </div>
+        <div class="detail description">
+            <span>{{@house.descripton}}</span>
+        </div>
+        <StarHouse
+            id={{@house.id}}
+            value={{@house.favorite}}
+        />
+        <h3>
+            <LinkTo @route={{@house.url}}>Click Here to View the Listing</LinkTo>
+        </h3>
+    </div>
+</article>
