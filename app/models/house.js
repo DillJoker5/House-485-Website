@@ -9,4 +9,6 @@ export default class HouseModel extends Model {
   @attr url;
   @attr id;
   @attr favorite;
+  @attr lat;
+  @attr lng;
 }

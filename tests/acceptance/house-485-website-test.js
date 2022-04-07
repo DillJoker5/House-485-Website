@@ -65,7 +65,7 @@ module('Acceptance | house 485', function (hooks) {
       .dom(h4Elements[1])
       .hasText(
         'Purpose: Display Local Milwaukee Houses while showing off ability to learn new technologies quickly.'
-      ); // insert here
+      );
     assert.dom(h4Elements[2]).hasText('Description of Project: ');
     assert.dom('ul').exists();
     assert.dom(h4Elements[3]).hasText('API Used: Realty in US');
