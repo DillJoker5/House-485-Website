@@ -1,0 +1,26 @@
+{
+    "properties": [
+        {
+            "property_id": "M9975913199",
+            "price": 239900,
+            "address": {
+                "city": "Milwaukee",
+                "country": "United States",
+                "county": "Milwaukee",
+                "lat": 43.08308,
+                "line": "3521 N 84th St",
+                "postal_code": "53222",
+                "state_code": "WI",
+                "state": "Wisconsin",
+                "lon": -88.017956
+            },
+            "rdc_web_url": "https://www.realtor.com/realestateandhomes-detail/3521-N-84th-St_Milwaukee_WI_53222_M99759-13199",
+            "description": "Excellent location for this fully remodeled 3 bedroom 2 full bath cape code home. New kitchen with granite countertops and new appliances. Open concept kitchen and living room. Full bath on the main floor. Upstairs has spacious master suite with new bathroom. Additional space in the finished lower level. Fenced yard and detached garage. Come take a look before it is too late!",
+            "photos": [
+                {
+                    "href": ""
+                }
+            ]
+        }
+    ]
+}

@@ -5,9 +5,9 @@
     </label>
 
     <SearchBar::SearchBar @houses={{@houses}} @searchString={{this.searchString}} as |results|>
-    </SearchBar::SearchBar>
-    {{#each @model as |house|}}
+        {{#each @model as |house|}}
         {{house}}
         <li><House @house={{house}} ></House></li>
-    {{/each}}
+        {{/each}}
+    </SearchBar::SearchBar>
 </div>

@@ -3,8 +3,12 @@ import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default class ApplicationAdapter {
-    namespace = 'api';
+    namespace = 'realtyAPI';
     @service session;
+
+    buildURL(...args) {
+        return `${super.buildURL(...args)}.json`;
+    }
 
     @computed('session.data.authenticated.token')
     get headers() {

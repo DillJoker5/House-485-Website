@@ -19,7 +19,7 @@ div,
 span,
 a,
 button {
-    font-family: fantasy;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     line-height: 1.5;
 }
 
@@ -52,7 +52,7 @@ p {
     border-radius: 5px;
     border: none;
     font-size: 22px;
-    font-weight: bold;
+    font-weight: normal;
     opacity: 0.9;
     display: inline-block;
 }
@@ -72,9 +72,7 @@ p {
 /* Menu Bar */
 .menu {
     height: 4em;
-    background-color: #677ae4;
     background-color: #05526A;
-    background-color: #e46855;
 }
 
 .menu h1 {
@@ -88,6 +86,7 @@ p {
 .menu a,
 .menu .links {
     display: inline-block;
+    padding: 1vh;
 }
 
 .menu a {
@@ -95,7 +94,11 @@ p {
     padding: 0 15px;
     color: white;
     font-size: 20px;
-    font-weight: bold;
+    font-weight: normal;
+}
+
+.menu .menu-index {
+    margin-top: 2vh;
 }
 
 .menu .links {
@@ -177,16 +180,13 @@ p {
 /* Body */
 .body {
     padding: 15px;
+    background-image: url('../../public/assets/images/homeHero.jpg');
 }
 
 /* App */
 .app {
     padding: 50px;
     background: white;
-}
-
-.app:hover {
-    background-color: #f3f3f3;
 }
 
 .app h2 {
@@ -310,13 +310,13 @@ p {
 
 .house .detail {
     flex-basis: 50%;
-    font-weight: 300;
+    font-weight: normal;
     font-style: italic;
     white-space: nowrap;
 }
 
 .house .detail span {
-    font-weight: 400;
+    font-weight: normal;
     font-style: normal;
 }
 

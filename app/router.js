@@ -15,4 +15,5 @@ Router.map(function () {
   this.route('review');
   this.route('house_img', { path: 'homeImg' });
   this.route('home', { path: '/' });
+  this.route('house', { path: '/house/:property_id' });
 });

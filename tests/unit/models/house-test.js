@@ -5,7 +5,8 @@ module('Unit | Model | house', function (hooks) {
     setupTest(hooks);
 
     test('fills in the model', function (assert) {
-        let house = {
+        let store = this.owner.lookup('service:store');
+        let house = store.createRecord('house', {
             "properties": [
                 {
                     "property_id": "M9574361434",
@@ -30,7 +31,7 @@ module('Unit | Model | house', function (hooks) {
                     ]
                 }
             ]
-        };
+        });
 
         assert.equal(house.price, 250000);
         assert.equal(house.address, "3454 N Bremen St, Milwaukee, WI 53212");

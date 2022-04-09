@@ -11,12 +11,7 @@ const LIMIT = 10;
 
 export default class HomeComponent extends Component {
   @tracked searchString = '';
-  @tracked houses = [];
   @tracked currentPropertyId = '';
-
-  get houses() {
-    return this.houses;
-  }
 
   get propertyId() {
     let { propertyIdentification } = this.args;

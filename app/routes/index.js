@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 
 export default class IndexRoute extends Route {
   @service store;
-  /*async model() {
+  async model() {
     return this.store.findAll('house');
-  }*/
+  }
 }
