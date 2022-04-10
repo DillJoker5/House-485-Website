@@ -63,7 +63,7 @@ p {
 
 /* Container */
 .container {
-    max-width: 1024px;
+    max-width: 1250px;
     min-height: 100vh;
     background: white;
     margin: 0 auto;
@@ -132,7 +132,7 @@ p {
     opacity: 1;
 }
 
-.menu .results {
+.results {
     display: none;
     position: absolute;
     width: 215px;
@@ -143,7 +143,7 @@ p {
     border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
-.menu .results li:hover {
+.results li:hover {
     background: #f3f3f3;
 }
 
@@ -180,7 +180,8 @@ p {
 /* Body */
 .body {
     padding: 15px;
-    background-image: url('../../public/assets/images/homeHero.jpg');
+    background-image: url('images/homeHero.jpg');
+    height: 100%;
 }
 
 /* App */
@@ -190,7 +191,7 @@ p {
 }
 
 .app h2 {
-    font-size: 3.2em;
+    font-size: 3em;
     margin-top: -25px;
 }
 
@@ -377,6 +378,7 @@ p {
     height: auto;
 }
 
+/* Register */
 .register {
     border-style: dashed;
     border-radius: 5px;
@@ -413,6 +415,7 @@ p {
     margin-bottom: 20px;
 }
 
+/* Login */
 .login {
     border-style: dashed;
     border-radius: 5px;
@@ -476,4 +479,130 @@ p {
     margin: -1px;
     padding: 0px;
     border: 0;
+}
+
+/* Mobile Responsiveness */
+
+@media only screen and (max-width < 600px) {
+
+    /* Container */
+    .container {
+        max-width: 600px;
+        min-height: 100vh;
+    }
+
+    /* Menu */
+    .menu h1 {
+        font-size: 1em;
+    }
+
+    .menu a,
+    .menu .links {
+        padding: 0;
+    }
+
+    .menu .menu-index {
+        margin-top: 0;
+    }
+
+    .menu .links {
+        padding: 0px;
+    }
+
+    .menu button {
+        margin-right: 0px;
+    }
+
+    /* Houses */
+    .houses label span {
+        font-size: 80%;
+        margin: 25px auto 10px;
+    }
+
+    .houses input {
+        font-size: 12px;
+        margin: 10px auto 25px;
+    }
+
+    /* App */
+    .app {
+        padding: 0;
+    }
+
+    .app h2 {
+        font-size: 2em;
+    }
+
+    .app p,
+    .app address {
+        margin-bottom: 0;
+    }
+
+    /* Individual House */
+    .house {
+        margin-top: 10px;
+        padding: 10px 15px;
+    }
+
+    .house img {
+        border-radius: 2px;
+    }
+
+    .house .image {
+        margin: 10px 15px;
+    }
+
+    .house .image.large {
+        margin: 15px 15px 25px 15px;
+    }
+
+    .house .image.large small {
+        font-size: 90%;
+    }
+
+    .house .details {
+        height: 100px;
+        margin: 10px 15px;
+    }
+
+    .house .map {
+        margin: 0px 15px;
+    }
+
+    .house .map img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .house.detailed .image.large {
+        margin: 15px 15px 25px 15px;
+    }
+
+    .house.detailed h3 {
+        font-size: 100%;
+    }
+
+    .house.detailed .map {
+        margin: 25px 15px 15px 25px;
+    }
+
+    /* Register */
+    .register {
+        border-radius: 5px;
+        border-width: 2px;
+        padding: 10px;
+        display: inline-flexbox;
+        top: 0%;
+        left: 0%;
+    }
+
+    /* Login */
+    .login {
+        border-radius: 5px;
+        border-width: 2px;
+        padding: 10px;
+        display: inline-flexbox;
+        top: 0%;
+        left: 0%;
+    }
 }
