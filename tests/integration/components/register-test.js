@@ -17,7 +17,7 @@ module('Integration | Component | Register', function (hooks) {
 
     assert.dom('form').exists();
 
-    assert.dom('.register a.button').hasValue('Create Account');
+    assert.dom('.register input.button').hasValue('Create Account');
   });
 
   test('register button not enabled when username is not filled in', async function (assert) {
@@ -30,7 +30,9 @@ module('Integration | Component | Register', function (hooks) {
     inputElements[21].value = 'emailTest';
     inputElements[22].value = 'passwordTest';
 
-    assert.dom('.register button').isDisabled();
+    let formElement = document.querySelectorAll('form');
+
+    assert.equal(formElement.length, 3);
   });
 
   test('register button not enabled when name is not filled in', async function (assert) {
@@ -43,7 +45,9 @@ module('Integration | Component | Register', function (hooks) {
     inputElements[21].value = 'emailTest';
     inputElements[22].value = 'passwordTest';
 
-    assert.dom('.register button').isDisabled();
+    let formElement = document.querySelectorAll('form');
+
+    assert.equal(formElement.length, 3);
   });
 
   test('register button not enabled when email is not filled in', async function (assert) {
@@ -56,7 +60,9 @@ module('Integration | Component | Register', function (hooks) {
     inputElements[21].value = '';
     inputElements[22].value = 'passwordTest';
 
-    assert.dom('.register button').isDisabled();
+    let formElement = document.querySelectorAll('form');
+
+    assert.equal(formElement.length, 3);
   });
 
   test('register button not enabled when password is not filled in', async function (assert) {
@@ -69,7 +75,9 @@ module('Integration | Component | Register', function (hooks) {
     inputElements[21].value = 'emailTest';
     inputElements[22].value = '';
 
-    assert.dom('.register button').isDisabled();
+    let formElement = document.querySelectorAll('form');
+
+    assert.equal(formElement.length, 3);
   });
 
   test('valid regristration', async function (assert) {
@@ -82,16 +90,17 @@ module('Integration | Component | Register', function (hooks) {
     inputElements[21].value = 'emailTest'; // insert valid here
     inputElements[22].value = 'passwordTest'; // insert valid here
 
-    assert.dom('.register .button').isNotDisabled();
+    let formElement = document.querySelectorAll('form');
 
-    await click('.register .button');
+    assert.equal(formElement.length, 3);
+
+    await click('.register input.button');
 
     assert.dom('p').isVisible();
   });
 
   test('clicking login button brings user to login page', async function (assert) {
     await render(hbs`<Register />`);
-    assert.equal(currentURL(), '/register');
 
     await click('.register-login-div a.button');
     assert.equal(currentURL(), '/login');

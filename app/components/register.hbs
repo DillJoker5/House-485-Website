@@ -1,12 +1,12 @@
 <div class="register">
     <div class="register-login-div">
-        <h3>Already Have an Account?<LinkTo @route="login" class="button" @model={{@login}}>Login</LinkTo></h3>
+        <h3>Already Have an Account?<LinkTo @route="login" class="button" >Login</LinkTo></h3>
     </div>
     <br>
     <h1>Register your account below</h1>
     <p class="hidden">Successfully Created Account!</p>
     <br>
-    <form autocomplete="off" action="" method="post" class="register-form">
+    <form autocomplete="off" action="http://localhost:8000/registerUser" method="post" class="register-form">
         <label for="registerUserName">UserName: </label>
         <input type="text" id="registerUserName" value={{@register.username}} required />
         <br>

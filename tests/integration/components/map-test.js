@@ -2,7 +2,7 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
-import ENV from '../../config/environment';
+import ENV from 'house-485-website/config/environment';
 
 module('Integration | Component | map', function (hooks) {
   setupRenderingTest(hooks);

@@ -71,7 +71,7 @@ module('Acceptance | house 485', function (hooks) {
     assert.dom(h4Elements[3]).hasText('API Used: Realty in US');
     assert
       .dom(h4Elements[4])
-      .hasText('Languages Used: JavaScript, Python, SQL');
+      .hasText('Languages Used: JavaScript, Go, SQL');
     assert.dom(h4Elements[5]).hasText('Frameworks / Libraries Used: ');
     assert.dom('ol').exists();
     assert.dom('div').exists();
