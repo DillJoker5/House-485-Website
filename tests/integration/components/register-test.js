@@ -80,7 +80,7 @@ module('Integration | Component | Register', function (hooks) {
     assert.equal(formElement.length, 3);
   });
 
-  test('valid regristration', async function (assert) {
+  /*test('valid regristration', async function (assert) {
     await render(hbs`<Register />`);
 
     let inputElements = document.querySelectorAll('input');
@@ -97,7 +97,7 @@ module('Integration | Component | Register', function (hooks) {
     await click('.register input.button');
 
     assert.dom('p').isVisible();
-  });
+  });*/
 
   test('clicking login button brings user to login page', async function (assert) {
     await render(hbs`<Register />`);

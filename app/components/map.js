@@ -1,5 +1,5 @@
 import Component from '@glimmer/component';
-import ENV from '../../config/environment';
+import ENV from 'house-485-website/config/environment';
 
 const MAPBOX_API_URL = 'https://api.mapbox.com/styles/v1/mapbox/streets-v11/static';
 

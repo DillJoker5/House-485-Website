@@ -7,5 +7,16 @@
     </div>
     <br>
     <hr>
-    <Home @model={{@house}} />
+    <div class="houses">
+        <label>
+            <span>Here's to finding your future home!</span>
+            <Input @value={{this.searchString}} class="light" />
+        </label>
+
+        <SearchBar::SearchBar @houses={{@model}} @searchString={{this.searchString}} as |results|>
+            {{#each @model as |home|}}
+                <House @house={{home}} ></House>
+            {{/each}}
+        </SearchBar::SearchBar>
+    </div>
 </App>

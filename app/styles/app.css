@@ -269,7 +269,7 @@ p {
     max-width: 100%;
 }
 
-.house .image.large {
+.house .image.open {
     margin: 30px 25px 50px 25px;
     flex-basis: 100%;
 }
@@ -283,7 +283,7 @@ p {
     position: relative;
 }
 
-.house .image.large small {
+.house .image.open small {
     margin-top: 10px;
     margin-bottom: 0px;
     font-size: 110%;
@@ -318,6 +318,7 @@ p {
 .house .detail span {
     font-weight: normal;
     font-style: normal;
+    display: flexbox;
 }
 
 .house .map {
@@ -341,7 +342,7 @@ p {
     flex-basis: 320px;
 }
 
-.house.detailed .image.large {
+.house.detailed .image.open {
     margin: 30px 25px 50px 25px;
     flex-basis: 100%;
 }
@@ -552,11 +553,11 @@ p {
         margin: 10px 15px;
     }
 
-    .house .image.large {
+    .house .image.open {
         margin: 15px 15px 25px 15px;
     }
 
-    .house .image.large small {
+    .house .image.open small {
         font-size: 90%;
     }
 
@@ -574,7 +575,7 @@ p {
         height: 100px;
     }
 
-    .house.detailed .image.large {
+    .house.detailed .image.open {
         margin: 15px 15px 25px 15px;
     }
 

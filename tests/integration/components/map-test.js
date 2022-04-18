@@ -9,8 +9,8 @@ module('Integration | Component | map', function (hooks) {
 
   test('it renders a map image for the specified params', async function (assert) {
     await render(hbs`<Map
-      @lat="43.080845"
-      @lng="-87.89972"
+      @lat="43.142911"
+      @lng="-87.984637"
       @zoom="10"
       @width="50"
       @height="100"
@@ -19,21 +19,22 @@ module('Integration | Component | map', function (hooks) {
     assert
       .dom('.map img')
       .exists()
-      .hasAttribute('alt', 'House Map Image at coordinates 43.080845, -87.89972')
+      .hasAttribute('alt', 'House Map Image at coordinates (43.142911, -87.984637)')
       .hasAttribute('src')
       .hasAttribute('width', '50')
       .hasAttribute('height', '100');
 
     let { src } = find('.map img');
-    let token = encodeURIComponent(ENV.MAPBPX_ACCESS_TOKEN);
+    console.log(src)
+    let token = encodeURIComponent(ENV.MAPBOX_ACCESS_TOKEN);
 
     assert.ok(
-      src.startsWutg('https://api.mapbox.com/'),
+      src.startsWith('https://api.mapbox.com/'),
       'the source starts with "https://api.mapbox.com/"'
     );
 
     assert.ok(
-      src.includes('-87.89972,43.080845,10'),
+      src.includes('-87.984637,43.142911'),
       'the source includes the lng, lat, zoom parameters'
     );
 
@@ -58,7 +59,7 @@ module('Integration | Component | map', function (hooks) {
       alt="House Map Image at coordinates near Milwaukee"
     />`);
 
-    assert.dom('.map img').hasAttribute('alt', 'House Map Image coordinates near Milwaukee');
+    assert.dom('.map img').hasAttribute('alt', 'House Map Image at coordinates near Milwaukee');
   });
 
   test('the source, width, and height attributes cannot be overridden', async function (assert) {
@@ -82,8 +83,8 @@ module('Integration | Component | map', function (hooks) {
 
   test('it updates the source when the necessary args change', async function (assert) {
     this.setProperties({
-      lat: 43.080845,
-      lng: -87.89972,
+      lat: 43.08308,
+      lng: -88.017956,
       zoom: 10,
       width: 50,
       height: 100,
@@ -100,7 +101,7 @@ module('Integration | Component | map', function (hooks) {
     let img = find('.map img');
 
     assert.ok(
-      img.src.includes('-87.89972,43.080845,10'),
+      img.src.includes('-88.017956,43.08308,10'),
       'the source includes the lng, lat, and zoom parameters'
     );
 
