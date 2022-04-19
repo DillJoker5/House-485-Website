@@ -1,9 +1,11 @@
 <article class="house">
     {{#if @house.image}}
-        <House::Image 
-            src={{@house.image}}
-            alt="A picture of {{@house.address}}"
-        />
+        <div class="house-img">
+            <House::Image 
+                src={{@house.image}}
+                alt="A picture of {{@house.address}}"
+            />
+        </div>
     {{/if}}
     <Map
             @lat={{@house.lat}}
@@ -47,7 +49,10 @@
         <div>
             <h3>Bookmark: <StarHouse::StarHouse @id={{@house.id}}/></h3>
         </div>
-        <br>
+        {{#if this.isHomeRoute}}
+        {{else}}
+            <br>
+        {{/if}}
         <h3>
             <a href={{@house.attributes.rdc_web_url}} target="_blank">Click Here to View the Listing</a>
         </h3>

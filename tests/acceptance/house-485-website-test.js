@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { click, find, visit, currentURL } from '@ember/test-helpers';
+import { click, visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 module('Acceptance | house 485', function (hooks) {
