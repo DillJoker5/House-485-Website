@@ -2,14 +2,11 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
 export default class StarHouseComponent extends Component {
-    @tracked favorite;
+    @tracked favorite = false;
+    @tracked houseId;
 
-    get favoriteValue() {
-        let { favoriteVal } = this.args;
-        this.favorite = favoriteVal;
-    }
-
-    get switchValue() {
-        this.favorite = !this.favorite;
+    get getFavoriteValue() {
+        let { id } = this.args;
+        this.houseId = id;
     }
 }

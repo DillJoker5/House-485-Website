@@ -211,7 +211,6 @@ p {
     margin-top: 15px;
     background-color: white;
     padding: 20px 25px;
-    display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
@@ -290,10 +289,7 @@ p {
 }
 
 .house .details {
-    flex-basis: 50%;
-    flex-grow: 2;
-    display: flex;
-    height: 150px;
+    height: fit-content;
     margin: 20px 25px;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -308,27 +304,28 @@ p {
     display: inline;
 }
 
+.house input {
+    width: auto;
+    display: inline-block;
+}
+
 .house .detail {
     flex-basis: 50%;
     font-weight: normal;
     font-style: italic;
-    white-space: nowrap;
 }
 
 .house .detail span {
     font-weight: normal;
     font-style: normal;
-    display: flexbox;
 }
 
-.house .map {
-    flex-grow: 0;
-    flex-basis: 150px;
-    font-size: 0;
-    margin: 0px 25px;
+.map {
+    float: right;
 }
 
-.house .map img {
+.map img {
+    margin: 20px 50px;
     width: 150px;
     height: 150px;
 }
@@ -366,16 +363,6 @@ p {
     white-space: normal;
     flex-basis: 100%;
     flex-shrink: 1;
-}
-
-.house.detailed .map {
-    flex-basis: 100%;
-    margin: 50px 25px 25px 50px;
-}
-
-.house.detailed .map img {
-    width: 100%;
-    height: auto;
 }
 
 /* Register */
@@ -566,11 +553,11 @@ p {
         margin: 10px 15px;
     }
 
-    .house .map {
+    .map {
         margin: 0px 15px;
     }
 
-    .house .map img {
+    .map img {
         width: 100px;
         height: 100px;
     }
@@ -582,11 +569,6 @@ p {
     .house.detailed h3 {
         font-size: 100%;
     }
-
-    .house.detailed .map {
-        margin: 25px 15px 15px 25px;
-    }
-
     /* Register */
     .register {
         border-radius: 5px;

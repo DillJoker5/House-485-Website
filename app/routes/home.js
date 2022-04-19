@@ -59,6 +59,11 @@ export default class HomeRoute extends Route {
       throw new Error(error);
     });*/
 
+    /*// Grab Favorite Data
+
+    let favoriteResponse = await fetch('http://localhost:8000/home');
+    let favoriteData = await favoriteResponse.data.json();*/
+
     // Fake Data API Request
 
     let response = await fetch('/realtyAPI/houses.json');
@@ -70,7 +75,7 @@ export default class HomeRoute extends Route {
         model = model.properties[0]
         let id = model.property_id;
         let attributes = model;
-        let location, address, image, price, lat, lng;
+        let location, address, image, price, lat, lng, favorite;
 
         address = attributes.address.line + ', ' + attributes.address.city + ', ' + attributes.address.state_code + ' ' + attributes.address.postal_code;
         location = attributes.address.line + ', ' + attributes.address.city + '(' + attributes.address.county + '), ' + attributes.address.state + '(' + attributes.address.state_code + ') ' + attributes.address.postal_code + ', ' + attributes.address.country + ', ' + attributes.address.lat + ' ' + attributes.address.lon;
@@ -79,7 +84,12 @@ export default class HomeRoute extends Route {
         lat = attributes.address.lat;
         lng = attributes.address.lon;
 
-        return { id, address, location, image, price, lat, lng, attributes };
+        /*favoriteRow = favoriteData.filter((favorite) => favorite.houseId == id);
+        if (favoriteRow) favorite = true;
+        else favorite = false;*/
+        favorite = false;
+
+        return { id, address, location, image, price, lat, lng, favorite, attributes };
       })
     }
   }
