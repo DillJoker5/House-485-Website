@@ -1,63 +1,82 @@
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
 import axios from 'axios';
-//import ENV from '../../config/environment';
-
-const REALTY_API_URL = 'realty-in-us.p.rapidapi.com';
-const REALTY_ENDPOINT_1 = '/properties/v2/list-for-sale';
-const REALTY_ENDPOINT_2 = 'properties/v2/detail';
-const CITY = 'Milwaukee';
-const STATECODE = 'WI';
-const OFFSET = 0;
-const LIMIT = 10;
 
 export default class HomeRoute extends Route {
 
   async model() {
     let requestOneSuccess = false;
     let requestTwoSuccess = false;
-    /* Real API Request
-    const requestOneOptions = {
+    const houseResponse = [];
+    const data = [];
+    // Real API Request
+
+    const options = {
       method: 'GET',
-      url: REALTY_API_URL + REALTY_ENDPOINT_1,
+      url: 'https://realty-in-us.p.rapidapi.com/properties/v2/list-for-sale',
       params: {
-        city: CITY,
-        state_code: STATECODE,
-        offset: OFFSET,
-        limit: LIMIT
+        city: 'Milwaukee',
+        state_code: 'WI',
+        offset: '0',
+        limit: '1',
+        sort: 'relevance'
       },
       headers: {
-        'X-RapidAPI-Host': REALTY_API_URL,
-        'X-RapidAPI-Key': ENV.REALTY_TOKEN
+        'X-RapidAPI-Host': 'realty-in-us.p.rapidapi.com',
+        'X-RapidAPI-Key': '9c8fec7b21msh2f2533962063080p19896djsn3ffdd1daeb7d'
       }
-    }
+    };
 
-    axios.request(requestOneOptions).then((response) => {
-      requestOneSuccess = true;
-      responseData = await response.json();
+    axios.request(options).then(function (response) {
+      let responseData = response.data;
+      houseResponse.push(response.data);
       for (let i = 0; i < responseData.properties.length; i++) {
         let currentProperty = responseData.properties[i];
-        const requestTwoOptions = {
+        const options = {
           method: 'GET',
-          url: REALTY_API_URL + REALTY_ENDPOINT_2,
-          params: {
-            property_id: currentProperty.property_id
+          url: 'https://realty-in-us.p.rapidapi.com/properties/v2/detail',
+          params: { 
+            property_id: currentProperty.property_id 
           },
           headers: {
-            'X-RapidAPI-Host': REALTY_API_URL,
-            'X-RapidAPI-Key': ENV.REALTY_TOKEN
+            'X-RapidAPI-Host': 'realty-in-us.p.rapidapi.com',
+            'X-RapidAPI-Key': '9c8fec7b21msh2f2533962063080p19896djsn3ffdd1daeb7d'
           }
-        }
+        };
 
-        axios.request(requestTwoOptions).then((responseTwo) => {
-          requestTwoSuccess = true;
-        }).catch((error) => {
+        axios.request(options).then(function (response) {
+          houseResponse[0].properties[i]["description"] = response.data.properties[0].description;
+          houseResponse[0].properties[i]["address"]["country"] = "United States";
+          houseResponse[0].properties[i]["photos"] = response.data.properties[0].photos;
+        }).catch(function (error) {
           throw new Error(error);
         });
+        setTimeout(() => {}, 1000);
       }
-    }).catch((error) => {
+      if (houseResponse[0].properties) {
+        data.push(houseResponse[0].properties);
+      }
+    }).catch(function (error) {
       throw new Error(error);
-    });*/
+    });
+
+    setTimeout(() => {
+      return data.map((model) => {
+        console.log(model);
+        let id = model[0].property_id;
+        let attributes = model[0];
+        let location, address, image, price, lat, lng, favorite;
+  
+        address = attributes.address.line + ', ' + attributes.address.city + ', ' + attributes.address.state_code + ' ' + attributes.address.postal_code;
+        location = attributes.address.line + ', ' + attributes.address.city + '(' + attributes.address.county + '), ' + attributes.address.state + '(' + attributes.address.state_code + ') ' + attributes.address.postal_code + ', ' + attributes.address.country + ', ' + attributes.address.lat + ' ' + attributes.address.lon;
+        image = attributes.photos[0].href;
+        price = attributes.price;
+        lat = attributes.address.lat;
+        lng = attributes.address.lon;
+        favorite = false;
+  
+        return { id, address, location, image, price, lat, lng, favorite, attributes };
+      });
+    }, 5000);
 
     /*// Grab Favorite Data
 
@@ -66,7 +85,7 @@ export default class HomeRoute extends Route {
 
     // Fake Data API Request
 
-    let response = await fetch('/realtyAPI/houses.json');
+    /*let response = await fetch('/realtyAPI/houses.json');
     let data = await response.json();
     requestOneSuccess = requestTwoSuccess = true; 
 
@@ -86,11 +105,11 @@ export default class HomeRoute extends Route {
 
         /*favoriteRow = favoriteData.filter((favorite) => favorite.houseId == id);
         if (favoriteRow) favorite = true;
-        else favorite = false;*/
+        else favorite = false;
         favorite = false;
 
         return { id, address, location, image, price, lat, lng, favorite, attributes };
       })
-    }
+    }*/
   }
 }
