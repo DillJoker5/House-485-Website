@@ -1,5 +1,6 @@
 import Route from '@ember/routing/route';
 import axios from 'axios';
+import { later } from '@ember/runloop';
 
 export default class HomeRoute extends Route {
 
@@ -8,6 +9,7 @@ export default class HomeRoute extends Route {
     let requestTwoSuccess = false;
     const houseResponse = [];
     const data = [];
+    const housesModel = [];
     // Real API Request
 
     const options = {
@@ -59,24 +61,26 @@ export default class HomeRoute extends Route {
       throw new Error(error);
     });
 
-    setTimeout(() => {
+    later(() => {
       return data.map((model) => {
-        console.log(model);
         let id = model[0].property_id;
         let attributes = model[0];
         let location, address, image, price, lat, lng, favorite;
-  
+      
         address = attributes.address.line + ', ' + attributes.address.city + ', ' + attributes.address.state_code + ' ' + attributes.address.postal_code;
         location = attributes.address.line + ', ' + attributes.address.city + '(' + attributes.address.county + '), ' + attributes.address.state + '(' + attributes.address.state_code + ') ' + attributes.address.postal_code + ', ' + attributes.address.country + ', ' + attributes.address.lat + ' ' + attributes.address.lon;
-        image = attributes.photos[0].href;
+        if (attributes.photos) {
+          image = attributes.photos[0].href;
+        }
         price = attributes.price;
         lat = attributes.address.lat;
         lng = attributes.address.lon;
         favorite = false;
-  
-        return { id, address, location, image, price, lat, lng, favorite, attributes };
+      
+        housesModel.push({ id, address, location, image, price, lat, lng, favorite, attributes });
       });
     }, 5000);
+    return { housesModel };
 
     /*// Grab Favorite Data
 

@@ -13,15 +13,17 @@
             <Input @value={{this.searchString}} class="light" />
         </label>
 
-        <SearchBar::SearchBar @houses={{@model}} @searchString={{this.searchString}} as |results|>
+        <SearchBar::SearchBar @houses={{@model.housesModel}} @searchString={{this.searchString}} as |results|>
             {{#if results}}
                 {{#each results as |home|}}
                     <House @house={{home}} ></House>
                 {{/each}}
-            {{else}}
+            {{else if @model.housesModel}}
                 {{#each @model as |home|}}
                     <House @house={{home}} ></House>
                 {{/each}}
+            {{else}}
+                <div>Loading</div>
             {{/if}}
         </SearchBar::SearchBar>
     </div>
