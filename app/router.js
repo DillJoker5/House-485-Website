@@ -13,7 +13,7 @@ Router.map(function () {
   this.route('login');
   this.route('register');
   this.route('review');
-  this.route('house_img', { path: 'homeImg' });
+  this.route('bookmark', { path: '/home/bookmark' });
   this.route('home', { path: '/' });
   this.route('house', { path: '/house/:property_id' });
 });

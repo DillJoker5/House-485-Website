@@ -82,9 +82,9 @@ export default class HomeRoute extends Route {
     }, 5000);
     return { housesModel };
 
-    /*// Grab Favorite Data
+    // Grab Favorite Data
 
-    let favoriteResponse = await fetch('http://localhost:8000/home');
+    /*let favoriteResponse = await fetch('http://localhost:8000/home');
     let favoriteData = await favoriteResponse.data.json();*/
 
     // Fake Data API Request
@@ -113,7 +113,7 @@ export default class HomeRoute extends Route {
         favorite = false;
 
         return { id, address, location, image, price, lat, lng, favorite, attributes };
-      })
+      });
     }*/
   }
 }
