@@ -9,7 +9,6 @@ export default class RegisterController extends Controller {
     @tracked error;
     @tracked username;
     @tracked name;
-    @tracked email;
     @tracked password;
 
     @action
@@ -20,7 +19,6 @@ export default class RegisterController extends Controller {
                 'authenticator:register',
                 this.username,
                 this.name,
-                this.email,
                 this.password
             );
         } catch (error) {

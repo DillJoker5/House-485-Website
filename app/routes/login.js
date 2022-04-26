@@ -5,6 +5,6 @@ export default class LoginRoute extends Route {
   @service session;
 
   beforeModel() {
-    this.session.prohibitAuthentication('bookmark');
+    this.session.prohibitAuthentication('home');
   }
 }

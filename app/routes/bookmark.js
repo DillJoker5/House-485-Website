@@ -1,6 +1,12 @@
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service'
 
 export default class BookmarkRoute extends Route {
+    @service session;
+
+    beforeModel(transition) {
+        this.session.requireAuthentication(transition, 'login')
+    }
     /*async model() {
         let bookmarkResponse = await fetch('http://localhost:8000/home');
         let bookmarkData = await bookmarkResponse.data.json();

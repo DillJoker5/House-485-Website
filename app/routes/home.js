@@ -7,7 +7,7 @@ export default class HomeRoute extends Route {
   async model() {
     let requestOneSuccess = false;
     let requestTwoSuccess = false;
-    const houseResponse = [];
+    /*const houseResponse = [];
     const data = [];
     const housesModel = [];
     // Real API Request
@@ -80,16 +80,19 @@ export default class HomeRoute extends Route {
         housesModel.push({ id, address, location, image, price, lat, lng, favorite, attributes });
       });
     }, 5000);
-    return { housesModel };
+    return { housesModel };*/
 
     // Grab Favorite Data
 
-    /*let favoriteResponse = await fetch('http://localhost:8000/home');
+    /*let favoriteResponse = await fetch('http://localhost:8000/home', {
+      method: 'POST',
+      mode: 'no-cors',
+    });
     let favoriteData = await favoriteResponse.data.json();*/
 
     // Fake Data API Request
 
-    /*let response = await fetch('/realtyAPI/houses.json');
+    let response = await fetch('/realtyAPI/houses.json');
     let data = await response.json();
     requestOneSuccess = requestTwoSuccess = true; 
 
@@ -107,13 +110,13 @@ export default class HomeRoute extends Route {
         lat = attributes.address.lat;
         lng = attributes.address.lon;
 
-        /*favoriteRow = favoriteData.filter((favorite) => favorite.houseId == id);
-        if (favoriteRow) favorite = true;
-        else favorite = false;
+        //let favoriteRow = favoriteData.filter((favorite) => favorite.houseId == id);
+        //if (favoriteRow) favorite = true;
+        //else favorite = false;
         favorite = false;
 
         return { id, address, location, image, price, lat, lng, favorite, attributes };
       });
-    }*/
+    }
   }
 }

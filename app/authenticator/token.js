@@ -11,13 +11,15 @@ export default Base.extend({
     },
 
     async authenticate (username, password) {
-        let response = fetch('/api/token', {
+        let response = await fetch('http://localhost:8000/login', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'mode': 'no-cors'
             },
             body: JSON.stringify({
-                username, password
+                'Username': username,
+                'Password': password
             })
         });
 
@@ -28,4 +30,7 @@ export default Base.extend({
             throw new Error(error);
         }
     },
+    
+    invalidate(data){
+    }
 });
