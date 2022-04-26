@@ -1,13 +1,12 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { click, currentURL, render } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
+import { click, currentURL, visit } from '@ember/test-helpers';
 
-module('Integration | Component | Login', function (hooks) {
+module('Integration |  Login', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders the content', async function (assert) {
-    await render(hbs`<Login />`);
+    await visit('login');
 
     assert.dom('p').hasText('No Account:');
     assert.dom('a.button').hasText('Register Here');
@@ -17,7 +16,7 @@ module('Integration | Component | Login', function (hooks) {
   });
 
   test('login button not sending request when username is not filled in', async function (assert) {
-    await render(hbs`<Login />`);
+    await visit('login');
 
     let inputElements = document.querySelectorAll('input');
 
@@ -33,7 +32,7 @@ module('Integration | Component | Login', function (hooks) {
   });
 
   test('login button not sending request when password is not filled in', async function (assert) {
-    await render(hbs`<Login />`);
+    await visit('login');
 
     let inputElements = document.querySelectorAll('input');
 
@@ -45,21 +44,21 @@ module('Integration | Component | Login', function (hooks) {
     assert.equal(formElement.length, 3);
   });
 
-  /*test('valid login', async function (assert) {
-    await render(hbs`<Login />`);
+  test('valid login', async function (assert) {
+    await visit('login');
 
     let inputElements = document.querySelectorAll('input');
 
-    inputElements[19].value = 'Administrator'; // insert valid here
-    inputElements[20].value = 'asdcvasdqwe123'; // insert valid here
+    inputElements[19].value = 'Administrator';
+    inputElements[20].value = 'asdcvasdqwe123';
 
     await click('.login form .button');
 
     assert.equal(currentURL(), '/');
-  });*/
+  });
 
   test('clicking register button brings user to register page', async function (assert) {
-    await render(hbs`<Login />`);
+    await visit('login');
 
     await click('.login .button');
     assert.equal(currentURL(), '/register');

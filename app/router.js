@@ -14,7 +14,7 @@ Router.map(function () {
   this.route('logout');
   this.route('register');
   this.route('review');
-  this.route('bookmark', { path: '/home/bookmark' });
+  this.route('bookmark', { path: '/bookmark' });
   this.route('home', { path: '/' });
   this.route('house', { path: '/house/:property_id' });
 });

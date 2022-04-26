@@ -1,3 +1,25 @@
 <App>
-    <Bookmark @houses={{@model}} />
+    <h1>Welcome to your bookmarks page!</h1>
+    <br>
+    <hr>
+    <div class="houses">
+        <label>
+            <span>See all of your bookmarked houses below!</span>
+            <Input @value={{this.searchString}} class="light" />
+        </label>
+
+        <SearchBar::SearchBar @houses={{@model}} @searchString={{this.searchString}} as |results|>
+            {{#if results}}
+                {{#each results as |home|}}
+                    <House @house={{home}} ></House>
+                {{/each}}
+            {{else if this.houses}}
+                {{#each @model as |home|}}
+                    <House @house={{home}} ></House>
+                {{/each}}
+            {{else}}
+                <div class="loader"></div>
+            {{/if}}
+        </SearchBar::SearchBar>
+    </div>
 </App>

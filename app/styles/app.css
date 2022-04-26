@@ -143,6 +143,12 @@ p {
     font-style: italic;
 }
 
+.houses p {
+    font-size: large;
+    color: green;
+    text-align: center;
+}
+
 .houses input {
     padding: 11px;
     font-size: 18px;

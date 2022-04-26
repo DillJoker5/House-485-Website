@@ -14,15 +14,25 @@ export default class RegisterController extends Controller {
     @action
     async register(e) {
         e.preventDefault();
-        try {
-            await this.session.register(
-                'authenticator:register',
-                this.username,
-                this.name,
-                this.password
-            );
-        } catch (error) {
-            this.error = error;
+        let response = await fetch('http://localhost:8000/register', {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                'Username': this.username,
+                'Name': this.name,
+                'Password': this.password,
+                'HouseId': 1
+            })
+        });
+
+        if (response.ok) {
+            return response.json();
+        } else {
+            let error = await response.text();
+            throw new Error(error);
         }
     }
 

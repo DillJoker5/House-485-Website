@@ -14,11 +14,24 @@ export default class LoginController extends Controller {
   async login(e) {
     e.preventDefault();
     try {
-      await this.session.authenticate(
-        'authenticator:token',
-        this.username,
-        this.password
-      );
+      let response = await fetch('http://localhost:8000/login', {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                'Username': this.username,
+                'Password': this.password
+            })
+        });
+
+        if (response.ok) {
+            return response.json();
+        } else {
+            let error = await response.text();
+            throw new Error(error);
+        }
     } catch (error) {
       this.error = error;
     }

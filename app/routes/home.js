@@ -101,7 +101,7 @@ export default class HomeRoute extends Route {
         model = model.properties[0]
         let id = model.property_id;
         let attributes = model;
-        let location, address, image, price, lat, lng, favorite;
+        let location, address, image, price, lat, lng, favorite, sold;
 
         address = attributes.address.line + ', ' + attributes.address.city + ', ' + attributes.address.state_code + ' ' + attributes.address.postal_code;
         location = attributes.address.line + ', ' + attributes.address.city + '(' + attributes.address.county + '), ' + attributes.address.state + '(' + attributes.address.state_code + ') ' + attributes.address.postal_code + ', ' + attributes.address.country + ', ' + attributes.address.lat + ' ' + attributes.address.lon;
@@ -114,6 +114,7 @@ export default class HomeRoute extends Route {
         //if (favoriteRow) favorite = true;
         //else favorite = false;
         favorite = false;
+        sold = false;
 
         return { id, address, location, image, price, lat, lng, favorite, attributes };
       });
