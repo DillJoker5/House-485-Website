@@ -5,7 +5,7 @@ export default class BookmarkRoute extends Route {
     @service session;
 
     beforeModel(transition) {
-        //this.session.requireAuthentication(transition, 'login')
+        this.session.requireAuthentication(transition, 'login')
     }
     async model() {
         /*let bookmarkResponse = await fetch('http://localhost:8000/home', {

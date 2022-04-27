@@ -1,12 +1,12 @@
 import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
+import { setupApplicationTest } from 'ember-qunit';
 import { click, currentURL, visit } from '@ember/test-helpers';
 
 module('Integration |  Login', function (hooks) {
-  setupRenderingTest(hooks);
+  setupApplicationTest(hooks);
 
   test('it renders the content', async function (assert) {
-    await visit('login');
+    await visit('/login');
 
     assert.dom('p').hasText('No Account:');
     assert.dom('a.button').hasText('Register Here');

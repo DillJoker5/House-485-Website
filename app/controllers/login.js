@@ -5,6 +5,7 @@ import { tracked } from '@glimmer/tracking';
 
 export default class LoginController extends Controller {
   @service session;
+  @service router;
 
   @tracked error;
   @tracked username;
@@ -15,25 +16,29 @@ export default class LoginController extends Controller {
     e.preventDefault();
     try {
       let response = await fetch('http://localhost:8000/login', {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                'Username': this.username,
-                'Password': this.password
-            })
-        });
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+              'Username': this.username,
+              'Password': this.password
+          })
+      });
 
-        if (response.ok) {
-            return response.json();
-        } else {
-            let error = await response.text();
-            throw new Error(error);
-        }
+      if (response.ok || response.status == 0) {
+        this.username = '';
+        this.password = '';
+        this.router.transitionTo('home');
+        return;
+      } else {
+        let error = await response.text();
+        throw new Error(error);
+      }
     } catch (error) {
       this.error = error;
+      throw new Error(error);
     }
   }
 

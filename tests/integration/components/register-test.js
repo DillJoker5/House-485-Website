@@ -1,9 +1,9 @@
 import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
+import { setupApplicationTest } from 'ember-qunit';
 import { click, currentURL, visit } from '@ember/test-helpers';
 
 module('Integration | Component | Register', function (hooks) {
-  setupRenderingTest(hooks);
+  setupApplicationTest(hooks);
 
   test('it renders the content', async function (assert) {
     await visit('register')
@@ -76,7 +76,7 @@ module('Integration | Component | Register', function (hooks) {
 
     await click('.register input.button');
 
-    assert.dom('p').isVisible();
+    assert.equal(currentURL(), '/login')
   });
 
   test('clicking login button brings user to login page', async function (assert) {

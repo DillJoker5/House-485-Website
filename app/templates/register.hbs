@@ -1,10 +1,12 @@
+{{#if this.error}}
+        <p class="error"><strong>{{this.error}}</strong></p>
+{{/if}}
 <div class="register">
     <div class="register-login-div">
         <h3>Already Have an Account?<LinkTo @route="login" class="button" >Login</LinkTo></h3>
     </div>
     <br>
     <h1>Register your account below</h1>
-    <p class="hidden">Successfully Created Account!</p>
     <br>
     <form autocomplete="off" method="post" class="register-form" {{on "submit" this.register }}>
         <label for="registerUserName">UserName: </label>
@@ -15,6 +17,7 @@
         <br>
         <label for="registerPassword">Password: </label>
         <input type="password" id="registerPassword" name="password" required {{on "change" (fn this.update "password") }} />
+        <br>
+        <input type="submit" id="createAccountButton" class="button" value="Create Account" />
     </form>
-    <input type="submit" id="createAccountButton" class="button" value="Create Account" />
 </div>

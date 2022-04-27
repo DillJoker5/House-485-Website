@@ -423,6 +423,16 @@ p {
     display: none;
 }
 
+.error {
+    font-size: medium;
+    color: red;
+    font-weight: 800;
+    text-align: center;
+    margin: -20px;
+    background-color: white;
+    background-size: auto;
+}
+
 /* Mobile Responsiveness */
 
 @media only screen and (max-width: 600px) {

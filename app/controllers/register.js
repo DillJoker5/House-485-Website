@@ -5,6 +5,7 @@ import { tracked } from '@glimmer/tracking';
 
 export default class RegisterController extends Controller {
     @service session;
+    @service router;
 
     @tracked error;
     @tracked username;
@@ -14,25 +15,33 @@ export default class RegisterController extends Controller {
     @action
     async register(e) {
         e.preventDefault();
-        let response = await fetch('http://localhost:8000/register', {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                'Username': this.username,
-                'Name': this.name,
-                'Password': this.password,
-                'HouseId': 1
-            })
-        });
+        try {
+            let response = await fetch('http://localhost:8000/register', {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    'Username': this.username,
+                    'Name': this.name,
+                    'Password': this.password,
+                    'HouseId': 1
+                })
+            });
 
-        if (response.ok) {
-            return response.json();
-        } else {
-            let error = await response.text();
-            throw new Error(error);
+            if (response.ok || response.status == 0) {
+                this.username = '';
+                this.name = '';
+                this.password = '';
+                this.router.transitionTo('login');
+                return;
+            } else {
+                let error = await response.text();
+                throw new Error(error);
+            }
+        } catch(error) {
+            this.error = error;
         }
     }
 
