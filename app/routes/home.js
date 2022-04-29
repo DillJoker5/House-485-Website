@@ -59,8 +59,30 @@ export default class HomeRoute extends Route {
       }
     }).catch(function (error) {
       throw new Error(error);
-    });
+    });*/
 
+    // Grab Favorite Data
+    let favoriteData = [];
+    const favoriteOptions = {
+      method: 'POST',
+      mode: 'no-cors',
+      url: 'http://localhost:8000/home',
+      headers : {
+        'Content-Type': 'application/json',
+      },
+    }
+
+    axios.request(favoriteOptions)
+      .then((response) => {
+        for(let i = 0; i < response.data.length; i++) {
+          favoriteData.push(response.data[i])
+        }
+      })
+      .catch((error) => {
+        throw new Error(error);
+      });
+
+    /*
     later(() => {
       return data.map((model) => {
         let id = model[0].property_id;
@@ -80,15 +102,8 @@ export default class HomeRoute extends Route {
         housesModel.push({ id, address, location, image, price, lat, lng, favorite, attributes });
       });
     }, 5000);
-    return { housesModel };*/
-
-    // Grab Favorite Data
-
-    /*let favoriteResponse = await fetch('http://localhost:8000/home', {
-      method: 'POST',
-      mode: 'no-cors',
-    });
-    let favoriteData = await favoriteResponse.data.json();*/
+    return { housesModel };
+    */
 
     // Fake Data API Request
 
@@ -110,10 +125,9 @@ export default class HomeRoute extends Route {
         lat = attributes.address.lat;
         lng = attributes.address.lon;
 
-        //let favoriteRow = favoriteData.filter((favorite) => favorite.houseId == id);
-        //if (favoriteRow) favorite = true;
-        //else favorite = false;
-        favorite = false;
+        let favoriteRow = favoriteData.filter((favorite) => favorite.HouseLocation == address);
+        if (favoriteRow) favorite = true;
+        else favorite = false;
         sold = false;
 
         return { id, address, location, image, price, lat, lng, favorite, attributes };

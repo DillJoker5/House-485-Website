@@ -1,12 +1,43 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
+import axios from 'axios';
 
 export default class StarHouseComponent extends Component {
-    @tracked favorite = false;
-    @tracked houseId;
+    @tracked address;
 
     get getFavoriteValue() {
-        let { id } = this.args;
-        this.houseId = id;
+        let { address } = this.args;
+        this.address = address;
+    }
+
+    @action
+    changeFavoriteValue() {
+        this.favorite = !this.favorite;
+        const options = {
+            method: 'POST',
+            mode: 'no-cors',
+            url: 'http://localhost:8000/home',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: {
+                "Price": 1,
+                "HouseLocation": this.address,
+                "Distance": 1,
+                "UserGuid": "",
+                "UserId": 1,
+                "Favorite": this.favorite
+            }
+        }
+        axios.request(options)
+            .then((response) => {
+                if (response.Type === 'Success') {
+                    this.getFavoriteValue();
+                }
+            })
+            .catch((error) => {
+                throw new Error(error);
+            });
     }
 }

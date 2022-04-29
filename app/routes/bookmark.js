@@ -1,21 +1,37 @@
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service'
+import { inject as service } from '@ember/service';
+import axios from 'axios';
 
 export default class BookmarkRoute extends Route {
     @service session;
 
     beforeModel(transition) {
-        this.session.requireAuthentication(transition, 'login')
+        //this.session.requireAuthentication(transition, 'login')
     }
     async model() {
-        /*let bookmarkResponse = await fetch('http://localhost:8000/home', {
+        let bookmarkData = [];
+        const bookmarkOptions = {
             method: 'POST',
             mode: 'no-cors',
-        });
-        print(bookmarkResponse);*/
-        let bookmarkResponse = await fetch('/realtyAPI/houses.json')
-        //let bookmarkData = await bookmarkResponse.json();
+            url: 'http://localhost:8000/favorite',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: {
+                "UserId": "",
+                "UserGuid": "",
+            },
+        }
 
+        axios.request(bookmarkOptions)
+            .then((response) => {
+                for(let i=0; i < response.data.length; i++) {
+                    bookmarkData.push(response.data[i]);
+                }
+            })
+            .catch((error) => {
+                throw new Error(error);
+            });
         // grab house data from api
         let homeModel = this.modelFor('home');
         let data = await bookmarkResponse.json();
