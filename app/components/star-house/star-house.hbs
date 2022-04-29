@@ -1,1 +1,1 @@
-<input type="checkbox" {{on "change" this.changeFavoriteValue}} />
+<input type="checkbox" value={{this.favorite}} {{on "change" this.changeFavoriteValue}} onload={{this.getFavoriteValue}}/>

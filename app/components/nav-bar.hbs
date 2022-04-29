@@ -9,10 +9,13 @@
         <LinkTo @route="contact" class="menu-contact">
             Contact Us
         </LinkTo>
-        <LinkTo @route="logout" {{on "click" this.logout}}>Logout</LinkTo>
-        <LinkTo @route="login" class="menu-login">
-            Login
-        </LinkTo>
+        {{#if session.isAuthenticated}}
+            <LinkTo @route="logout" {{on "click" this.logout}}>Logout</LinkTo>
+        {{else}}
+            <LinkTo @route="login" class="menu-login">
+                Login
+            </LinkTo>
+        {{/if}}
         <LinkTo @route="bookmark" class="menu-bookmark">
             Bookmarks
         </LinkTo>

@@ -34,34 +34,19 @@ export default class BookmarkRoute extends Route {
             });
         // grab house data from api
         let homeModel = this.modelFor('home');
-        let data = await bookmarkResponse.json();
 
         // if this user id matches any id in bookmarkResponse
-        /*let houseId = '';
+        let userId = '';
         let data = [];
 
         for(let i = 0; i < bookmarkData.length; i++) {
-            userId = bookmarkData[i].HouseId;
-            if (houseId == homeModel[i].property_id) {
+            bookmarkUserId = bookmarkData[i].UserId;
+            if (userId == bookmarkUserId) {
                 data.push(homeModel[i]);
             } else continue;
         }
 
-        return data.map((model) => {
-            let id = model.property_id;
-            let attributes = model;
-            let location, address, image, price, lat, lng, favorite;
 
-            address = attributes.address.line + ', ' + attributes.address.city + ', ' + attributes.address.state_code + ' ' + attributes.address.postal_code;
-            location = attributes.address.line + ', ' + attributes.address.city + '(' + attributes.address.county + '), ' + attributes.address.state + '(' + attributes.address.state_code + ') ' + attributes.address.postal_code + ', ' + attributes.address.country + ', ' + attributes.address.lat + ' ' + attributes.address.lon;
-            image = attributes.photos[0].href;
-            price = attributes.price;
-            lat = attributes.address.lat;
-            lng = attributes.address.lon;
-            favorite = true;
-
-            return { id, address, location, image, price, lat, lng, favorite, attributes };
-        });*/
         return data.map((model) => {
             model = model.properties[0]
             let id = model.property_id;
@@ -76,7 +61,7 @@ export default class BookmarkRoute extends Route {
             lng = attributes.address.lon;
             favorite = true;
 
-            let soldRow = homeModel.filter((home) => home.property_id == id)
+            let soldRow = homeModel.filter((home) => home.Address == address)
             if (soldRow) sold = true;
             else sold = false;
     

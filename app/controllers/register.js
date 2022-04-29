@@ -2,6 +2,7 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
+import axios from '../../node_modules/axios/index';
 
 export default class RegisterController extends Controller {
     @service session;
@@ -16,7 +17,8 @@ export default class RegisterController extends Controller {
     async register(e) {
         e.preventDefault();
         try {
-            let response = await fetch('http://localhost:8000/register', {
+            const registerOptions = {
+                url: 'http://localhost:8000/register',
                 method: 'POST',
                 mode: 'no-cors',
                 headers: {
@@ -26,20 +28,23 @@ export default class RegisterController extends Controller {
                     'Username': this.username,
                     'Name': this.name,
                     'Password': this.password,
-                    'HouseId': 1
+                    'HouseId': 1,
                 })
-            });
-
-            if (response.ok || response.status == 0) {
-                this.username = '';
-                this.name = '';
-                this.password = '';
-                this.router.transitionTo('login');
-                return;
-            } else {
-                let error = await response.text();
-                throw new Error(error);
             }
+
+            axios.request(registerOptions)
+                .then((response) => {
+                    if (response.ok) {
+                        this.username = '';
+                        this.name = '';
+                        this.password = '';
+                        this.router.transitionTo('login');
+                        return;
+                    }
+                })
+                .catch((error) => {
+                    throw new Error(error);
+                });
         } catch(error) {
             this.error = error;
         }
