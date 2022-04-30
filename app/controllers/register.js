@@ -2,7 +2,7 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-import axios from '../../node_modules/axios/index';
+import axios from 'axios';
 
 export default class RegisterController extends Controller {
     @service session;
@@ -29,7 +29,7 @@ export default class RegisterController extends Controller {
                     'Name': this.name,
                     'Password': this.password,
                     'HouseId': 1,
-                })
+                }),
             }
 
             axios.request(registerOptions)

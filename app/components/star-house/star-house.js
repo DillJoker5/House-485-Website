@@ -5,33 +5,30 @@ import { inject as service } from '@ember/service';
 import axios from 'axios';
 
 export default class StarHouseComponent extends Component {
-    @tracked address;
-    @tracked favorite;
     @service session;
 
-    get getFavoriteValue() {
-        let { addr, fav } = this.args;
-        this.address = addr;
-        this.favorite = fav;
+    get favorite() {
+        return this.args.favorite;
     }
 
     @action
     changeFavoriteValue() {
-        this.favorite = !this.favorite;
+        let { address, favorite } = this.args;
+        favorite = !favorite;
         const options = {
             method: 'POST',
             mode: 'no-cors',
-            url: 'http://localhost:8000/home',
+            url: 'http://localhost:8000/updateFavorite',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: {
                 "Price": 1,
-                "HouseLocation": this.address,
+                "HouseLocation": address,
                 "Distance": 1,
-                "UserGuid": "",
+                "UserGuid": "cdd6d710-9b59-41b2-8e8a-776bdedfab12",
                 "UserId": 1,
-                "Favorite": this.favorite
+                "Favorite": favorite
             }
         }
         axios.request(options)

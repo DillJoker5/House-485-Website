@@ -126,7 +126,7 @@ export default class HomeRoute extends Route {
         lng = attributes.address.lon;
 
         let favoriteRow = favoriteData.filter((favorite) => favorite.HouseLocation == address);
-        if (favoriteRow) favorite = true;
+        if (favoriteRow.length) favorite = true;
         else favorite = false;
         sold = false;
 

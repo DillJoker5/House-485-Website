@@ -10,6 +10,10 @@ export default class BookmarkRoute extends Route {
     }
     async model() {
         let bookmarkData = [];
+        const bookmarkBody = {
+            "UserId": 1,
+            "UserGuid": "cdd6d710-9b59-41b2-8e8a-776bdedfab12"
+        };
         const bookmarkOptions = {
             method: 'POST',
             mode: 'no-cors',
@@ -17,10 +21,7 @@ export default class BookmarkRoute extends Route {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: {
-                "UserId": "",
-                "UserGuid": "",
-            },
+            body: bookmarkBody
         }
 
         axios.request(bookmarkOptions)

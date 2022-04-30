@@ -9,7 +9,7 @@
         <LinkTo @route="contact" class="menu-contact">
             Contact Us
         </LinkTo>
-        {{#if session.isAuthenticated}}
+        {{#if this.session.isAuthenticated}}
             <LinkTo @route="logout" {{on "click" this.logout}}>Logout</LinkTo>
         {{else}}
             <LinkTo @route="login" class="menu-login">
