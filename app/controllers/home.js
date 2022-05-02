@@ -1,14 +1,18 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 
 export default class HomeController extends Controller{
+    @tracked loadHomeComponent;
+
     @action
-    modelLoaded() {
-        console.log('refresh model')
-        let model = this.get('model');
-        if (model) {
-            return true;
+    loadHouses() {
+        const model = this.get('model');
+        if (model.housesModel.length > 0) {
+        this.loadHomeComponent = true;
         }
-        return false;
+        else {
+        this.loadHomeComponent = false
+        }
     }
 }

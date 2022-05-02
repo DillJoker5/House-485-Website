@@ -1,13 +1,15 @@
 import Route from '@ember/routing/route';
 import axios from 'axios';
 import { later } from '@ember/runloop';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
 export default class HomeRoute extends Route {
 
   async model() {
     let requestOneSuccess = false;
     let requestTwoSuccess = false;
-    /*const houseResponse = [];
+    const houseResponse = [];
     const data = [];
     const housesModel = [];
     // Real API Request
@@ -24,7 +26,7 @@ export default class HomeRoute extends Route {
       },
       headers: {
         'X-RapidAPI-Host': 'realty-in-us.p.rapidapi.com',
-        'X-RapidAPI-Key': '9c8fec7b21msh2f2533962063080p19896djsn3ffdd1daeb7d'
+        'X-RapidAPI-Key': '4dc911b942mshdb3731a9369cfd0p17714djsn84ceaf2ee6e0'
       }
     };
 
@@ -41,7 +43,7 @@ export default class HomeRoute extends Route {
           },
           headers: {
             'X-RapidAPI-Host': 'realty-in-us.p.rapidapi.com',
-            'X-RapidAPI-Key': '9c8fec7b21msh2f2533962063080p19896djsn3ffdd1daeb7d'
+            'X-RapidAPI-Key': '4dc911b942mshdb3731a9369cfd0p17714djsn84ceaf2ee6e0'
           }
         };
 
@@ -59,7 +61,7 @@ export default class HomeRoute extends Route {
       }
     }).catch(function (error) {
       throw new Error(error);
-    });*/
+    });
 
     // Grab Favorite Data
     let favoriteData = [];
@@ -82,7 +84,6 @@ export default class HomeRoute extends Route {
         throw new Error(error);
       });
 
-    /*
     later(() => {
       return data.map((model) => {
         let id = model[0].property_id;
@@ -103,11 +104,10 @@ export default class HomeRoute extends Route {
       });
     }, 5000);
     return { housesModel };
-    */
 
     // Fake Data API Request
 
-    let response = await fetch('/realtyAPI/houses.json');
+    /*let response = await fetch('/realtyAPI/houses.json');
     let data = await response.json();
     requestOneSuccess = requestTwoSuccess = true; 
 
@@ -132,6 +132,6 @@ export default class HomeRoute extends Route {
 
         return { id, address, location, image, price, lat, lng, favorite, attributes };
       });
-    }
+    }*/
   }
 }

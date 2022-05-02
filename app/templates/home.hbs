@@ -12,8 +12,11 @@
             <span>Here's to finding your future home!</span>
             <Input @value={{this.searchString}} class="light" />
         </label>
+        <label>
+            <input type="button" value="Please click here to begin looking for houses!" {{on "click" this.loadHouses}} />
+        </label>
 
-        {{#if this.modelLoaded}}
+        {{#if this.loadHomeComponent}}
             <SearchBar::SearchBar @houses={{@model.housesModel}} @searchString={{this.searchString}} as |results|>
                 {{#if results}}
                     {{#each results as |home|}}
