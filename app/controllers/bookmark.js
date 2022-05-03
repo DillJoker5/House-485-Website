@@ -3,22 +3,22 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
 export default class HomeController extends Controller{
-    @tracked loadHomeComponent;
+    @tracked loadBookmarkComponent;
 
     @action
     loadHouses() {
         const model = this.get('model');
-        if (model && model.housesModel.length > 0) {
-            this.loadHomeComponent = true;
+        if (model && model.length > 0) {
+        this.loadBookmarkComponent = true;
         }
         else {
-            this.loadHomeComponent = false
+        this.loadBookmarkComponent = false
         }
     }
 
     @action
-    refreshHomeModel() {
-        this.loadHomeComponent = false;
+    refreshBookmarkModel() {
+        this.loadBookmarkComponent = false;
         this.send('refreshModel');
     }
 }

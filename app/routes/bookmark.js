@@ -1,6 +1,7 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import axios from 'axios';
+import { action } from '@ember/object';
 
 export default class BookmarkRoute extends Route {
     @service session;
@@ -56,7 +57,9 @@ export default class BookmarkRoute extends Route {
     
             address = attributes.address.line + ', ' + attributes.address.city + ', ' + attributes.address.state_code + ' ' + attributes.address.postal_code;
             location = attributes.address.line + ', ' + attributes.address.city + '(' + attributes.address.county + '), ' + attributes.address.state + '(' + attributes.address.state_code + ') ' + attributes.address.postal_code + ', ' + attributes.address.country + ', ' + attributes.address.lat + ' ' + attributes.address.lon;
-            image = attributes.photos[0].href;
+            if (attributes.photos) {
+                image = attributes.photos[0].href;
+            }
             price = attributes.price;
             lat = attributes.address.lat;
             lng = attributes.address.lon;
@@ -68,5 +71,10 @@ export default class BookmarkRoute extends Route {
     
             return { id, address, location, image, price, lat, lng, favorite, sold, attributes };
           });
+    }
+
+    @action
+    refreshModel() {
+        this.refresh();
     }
 }

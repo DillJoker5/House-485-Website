@@ -7,19 +7,30 @@
             <span>See all of your bookmarked houses below!</span>
             <Input @value={{this.searchString}} class="light" />
         </label>
+        {{#if this.loadBookmarkComponent}}
+            <label>
+                <input type="button" value="Click here to refresh" {{on "click" this.refreshBookmarkModel}} />
+            </label>
+        {{else}}
+            <label>
+                <input type="button" value="Click here to look for houses!" {{on "click" this.loadHouses}} />
+            </label>
+        {{/if}}
 
-        <SearchBar::SearchBar @houses={{@model}} @searchString={{this.searchString}} as |results|>
-            {{#if results}}
-                {{#each results as |home|}}
-                    <House @house={{home}} ></House>
-                {{/each}}
-            {{else if this.houses}}
-                {{#each @model as |home|}}
-                    <House @house={{home}} ></House>
-                {{/each}}
-            {{else}}
-                <div class="loader"></div>
-            {{/if}}
-        </SearchBar::SearchBar>
+        {{#if this.loadBookmarkComponent}}
+            <SearchBar::SearchBar @houses={{@model}} @searchString={{this.searchString}} as |results|>
+                {{#if results}}
+                    {{#each results as |home|}}
+                        <House @house={{home}} ></House>
+                    {{/each}}
+                {{else}}
+                    {{#each @model as |home|}}
+                        <House @house={{home}} ></House>
+                    {{/each}}
+                {{/if}}
+            </SearchBar::SearchBar>
+        {{else}}
+            <div class="loader"></div>
+        {{/if}}
     </div>
 </App>

@@ -1,18 +1,15 @@
 import Route from '@ember/routing/route';
 import axios from 'axios';
 import { later } from '@ember/runloop';
-import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 export default class HomeRoute extends Route {
 
   async model() {
-    let requestOneSuccess = false;
-    let requestTwoSuccess = false;
+    // Real API Request
     const houseResponse = [];
     const data = [];
     const housesModel = [];
-    // Real API Request
 
     const options = {
       method: 'GET',
@@ -26,7 +23,7 @@ export default class HomeRoute extends Route {
       },
       headers: {
         'X-RapidAPI-Host': 'realty-in-us.p.rapidapi.com',
-        'X-RapidAPI-Key': '4dc911b942mshdb3731a9369cfd0p17714djsn84ceaf2ee6e0'
+        'X-RapidAPI-Key': 'a6f584853emsh737a9117f7a4efdp19384bjsn17b25d26223a'
       }
     };
 
@@ -43,18 +40,19 @@ export default class HomeRoute extends Route {
           },
           headers: {
             'X-RapidAPI-Host': 'realty-in-us.p.rapidapi.com',
-            'X-RapidAPI-Key': '4dc911b942mshdb3731a9369cfd0p17714djsn84ceaf2ee6e0'
+            'X-RapidAPI-Key': 'a6f584853emsh737a9117f7a4efdp19384bjsn17b25d26223a'
           }
         };
 
-        axios.request(options).then(function (response) {
-          houseResponse[0].properties[i]["description"] = response.data.properties[0].description;
-          houseResponse[0].properties[i]["address"]["country"] = "United States";
-          houseResponse[0].properties[i]["photos"] = response.data.properties[0].photos;
-        }).catch(function (error) {
-          throw new Error(error);
-        });
-        setTimeout(() => {}, 1000);
+        later(() => {
+          axios.request(options).then(function (response) {
+            houseResponse[0].properties[i]["description"] = response.data.properties[0].description;
+            houseResponse[0].properties[i]["address"]["country"] = "United States";
+            houseResponse[0].properties[i]["photos"] = response.data.properties[0].photos;
+          }).catch(function (error) {
+            throw new Error(error);
+          });
+        }, 1000)
       }
       if (houseResponse[0].properties) {
         data.push(houseResponse[0].properties);
@@ -85,29 +83,34 @@ export default class HomeRoute extends Route {
       });
 
     later(() => {
-      return data.map((model) => {
-        let id = model[0].property_id;
-        let attributes = model[0];
-        let location, address, image, price, lat, lng, favorite;
-      
-        address = attributes.address.line + ', ' + attributes.address.city + ', ' + attributes.address.state_code + ' ' + attributes.address.postal_code;
-        location = attributes.address.line + ', ' + attributes.address.city + '(' + attributes.address.county + '), ' + attributes.address.state + '(' + attributes.address.state_code + ') ' + attributes.address.postal_code + ', ' + attributes.address.country + ', ' + attributes.address.lat + ' ' + attributes.address.lon;
-        if (attributes.photos) {
-          image = attributes.photos[0].href;
-        }
-        price = attributes.price;
-        lat = attributes.address.lat;
-        lng = attributes.address.lon;
-        favorite = false;
-      
-        housesModel.push({ id, address, location, image, price, lat, lng, favorite, attributes });
-      });
-    }, 5000);
+      if(data.length > 0) {
+        return data[0].map((model) => {
+          let id = model.property_id;
+          let attributes = model;
+          let location, address, image, price, lat, lng, favorite;
+        
+          address = attributes.address.line + ', ' + attributes.address.city + ', ' + attributes.address.state_code + ' ' + attributes.address.postal_code;
+          location = attributes.address.line + ', ' + attributes.address.city + '(' + attributes.address.county + '), ' + attributes.address.state + '(' + attributes.address.state_code + ') ' + attributes.address.postal_code + ', United States , ' + attributes.address.lat + ' ' + attributes.address.lon;
+          if (attributes.photos) {
+            image = attributes.photos[0].href;
+          }
+          price = attributes.price;
+          lat = attributes.address.lat;
+          lng = attributes.address.lon;
+          favorite = false;
+        
+          housesModel.push({ id, address, location, image, price, lat, lng, favorite, attributes });
+        });
+      }
+    }, 3000);
+    
     return { housesModel };
 
     // Fake Data API Request
+    /*let requestOneSuccess = false;
+    let requestTwoSuccess = false;
 
-    /*let response = await fetch('/realtyAPI/houses.json');
+    let response = await fetch('/realtyAPI/houses.json');
     let data = await response.json();
     requestOneSuccess = requestTwoSuccess = true; 
 
@@ -133,5 +136,10 @@ export default class HomeRoute extends Route {
         return { id, address, location, image, price, lat, lng, favorite, attributes };
       });
     }*/
+  }
+
+  @action
+  refreshModel() {
+    this.refresh();
   }
 }

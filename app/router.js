@@ -16,5 +16,5 @@ Router.map(function () {
   this.route('review');
   this.route('bookmark', { path: '/bookmark' });
   this.route('home', { path: '/' });
-  this.route('house', { path: '/house/:property_id' });
+  this.route('house', { path: '/:property_id' });
 });

@@ -2,7 +2,7 @@ import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 import { click, currentURL, visit } from '@ember/test-helpers';
 
-module('Integration |  Login', function (hooks) {
+module('Integration | Login', function (hooks) {
   setupApplicationTest(hooks);
 
   test('it renders the content', async function (assert) {
