@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { click, find, visit, currentURL } from '@ember/test-helpers';
+import { click, visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 module('Acceptance | house 485', function (hooks) {
@@ -65,13 +65,13 @@ module('Acceptance | house 485', function (hooks) {
       .dom(h4Elements[1])
       .hasText(
         'Purpose: Display Local Milwaukee Houses while showing off ability to learn new technologies quickly.'
-      ); // insert here
+      );
     assert.dom(h4Elements[2]).hasText('Description of Project: ');
     assert.dom('ul').exists();
     assert.dom(h4Elements[3]).hasText('API Used: Realty in US');
     assert
       .dom(h4Elements[4])
-      .hasText('Languages Used: JavaScript, Python, SQL');
+      .hasText('Languages Used: JavaScript, Go, SQL');
     assert.dom(h4Elements[5]).hasText('Frameworks / Libraries Used: ');
     assert.dom('ol').exists();
     assert.dom('div').exists();
