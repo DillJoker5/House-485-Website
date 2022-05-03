@@ -7,31 +7,42 @@ export default class NavBarComponent extends Component {
     @service session;
     @service router;
 
-    @action
-    logout() {
-        const logoutOptions = {
-            url: 'http://localhost:8000/logout',
-            method: 'POST',
-            mode: 'no-cors',
-            headesr: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                "SessionId": 1,
-                "UserId": 1,
-                "UserGuid": "",
-                "IsActive": true,
-            })
+    get checkSessionToken() {
+        console.log(this.session)
+        if (this.session.data.authenticated.token) {
+            console.log('returning true')
+            return true;
         }
+        return false;
+    }
 
-        axios.request(logoutOptions)
-            .then((response) => {
+    @action
+    async logout() {
+        try {
+            const logoutUrl = '/logout';
+    
+            const response = await axios.post(
+                logoutUrl,
+                {
+                    "SessionId": 1, // dynamically get this
+                    "UserId": 1, // dynamically get this
+                    "UserGuid": "", // dynamically get this
+                    "IsActive": true,
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+            );
+            if (response.status === 200) {
                 // change isAuthenticated to false and get rid of any authentication stuff
-            })
-            .catch((error) => {
-                throw new Error(error);
-            });
-        this.session.invalidate();
-        this.router.transitionTo('home');
+                this.session.data.authenticated.token = '';
+                this.session.invalidate();
+                this.router.transitionTo('home');
+            }
+        } catch(error) {
+            throw new Error(error);
+        }
     }
 }

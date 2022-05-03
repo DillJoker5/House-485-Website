@@ -7,46 +7,45 @@ export default class BookmarkRoute extends Route {
     @service session;
 
     beforeModel(transition) {
-        //this.session.requireAuthentication(transition, 'login')
+        this.session.requireAuthentication(transition, 'login')
     }
     async model() {
+        try {
         let bookmarkData = [];
-        const bookmarkBody = {
-            "UserId": 1,
-            "UserGuid": "cdd6d710-9b59-41b2-8e8a-776bdedfab12"
-        };
-        const bookmarkOptions = {
-            method: 'POST',
-            mode: 'no-cors',
-            url: 'http://localhost:8000/favorite',
-            headers: {
-                'Content-Type': 'application/json',
+        const bookmarkUrl = '/favorite';
+
+        const response = await axios.post(
+            bookmarkUrl,
+            {
+                "UserId": 1, // dynamically get this
+                "UserGuid": "cdd6d710-9b59-41b2-8e8a-776bdedfab12", // dynamically get this
             },
-            body: bookmarkBody
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            }
+        );
+        if (response.status === 200) {
+            for(let i = 0; i < response.data.Data.length; i++) {
+                bookmarkData.push(response.data.Data[i]);
+            }
+            // grab house data from api
+            let homeModel = this.modelFor('home');
+            console.log(bookmarkData);
+            console.log(homeModel);
         }
 
-        axios.request(bookmarkOptions)
-            .then((response) => {
-                for(let i=0; i < response.data.length; i++) {
-                    bookmarkData.push(response.data[i]);
-                }
-            })
-            .catch((error) => {
-                throw new Error(error);
-            });
-        // grab house data from api
-        let homeModel = this.modelFor('home');
-
-        // if this user id matches any id in bookmarkResponse
-        let userId = '';
+        /*// if this user id matches any id in bookmarkResponse
+        let userId = '1';
         let data = [];
 
         for(let i = 0; i < bookmarkData.length; i++) {
-            bookmarkUserId = bookmarkData[i].UserId;
+            let bookmarkUserId = bookmarkData[i].UserId;
             if (userId == bookmarkUserId) {
-                data.push(homeModel[i]);
+                data.push(book[i]);
             } else continue;
-        }
+        }*/
 
 
         return data.map((model) => {
@@ -71,6 +70,9 @@ export default class BookmarkRoute extends Route {
     
             return { id, address, location, image, price, lat, lng, favorite, sold, attributes };
           });
+        } catch(error) {
+            throw new Error(error);
+        }
     }
 
     @action

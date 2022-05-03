@@ -17,34 +17,29 @@ export default class RegisterController extends Controller {
     async register(e) {
         e.preventDefault();
         try {
-            const registerOptions = {
-                url: 'http://localhost:8000/register',
-                method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json',
+            const registerUrl = '/register';
+            
+            const response = await axios.post(
+                registerUrl,
+                {
+                    "Username": this.username,
+                    "Name": this.name,
+                    "Password": this.password,
+                    "HouseId": 1,
                 },
-                body: JSON.stringify({
-                    'Username': this.username,
-                    'Name': this.name,
-                    'Password': this.password,
-                    'HouseId': 1,
-                }),
-            }
-
-            axios.request(registerOptions)
-                .then((response) => {
-                    if (response.ok) {
-                        this.username = '';
-                        this.name = '';
-                        this.password = '';
-                        this.router.transitionTo('login');
-                        return;
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
                     }
-                })
-                .catch((error) => {
-                    throw new Error(error);
-                });
+                }
+            );
+            if (response.status === 200) {
+                this.username = '';
+                this.name = '';
+                this.password = '';
+                this.router.transitionTo('login');
+                return;
+            }
         } catch(error) {
             this.error = error;
         }

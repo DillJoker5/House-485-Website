@@ -87,7 +87,7 @@ export default class HomeRoute extends Route {
         return data[0].map((model) => {
           let id = model.property_id;
           let attributes = model;
-          let location, address, image, price, lat, lng, favorite;
+          let location, address, image, price, lat, lng, favorite, sold;
         
           address = attributes.address.line + ', ' + attributes.address.city + ', ' + attributes.address.state_code + ' ' + attributes.address.postal_code;
           location = attributes.address.line + ', ' + attributes.address.city + '(' + attributes.address.county + '), ' + attributes.address.state + '(' + attributes.address.state_code + ') ' + attributes.address.postal_code + ', United States , ' + attributes.address.lat + ' ' + attributes.address.lon;
@@ -97,9 +97,17 @@ export default class HomeRoute extends Route {
           price = attributes.price;
           lat = attributes.address.lat;
           lng = attributes.address.lon;
-          favorite = false;
+
+          let favoriteRow = favoriteData.filter((favorite) => favorite.HouseLocation == address);
+          if (favoriteRow.length) {
+            favorite = true;
+            sold = false;
+          }
+          else {
+            favorite = false;
+          }
         
-          housesModel.push({ id, address, location, image, price, lat, lng, favorite, attributes });
+          housesModel.push({ id, address, location, image, price, lat, lng, favorite, sold, attributes });
         });
       }
     }, 3000);

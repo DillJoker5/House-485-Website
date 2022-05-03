@@ -1,5 +1,5 @@
 {
   "disableAnalytics": false,
-  "port": 8000,
+  "port": 4200,
   "proxy": "http://localhost:8000"
 }

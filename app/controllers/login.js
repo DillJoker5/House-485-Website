@@ -16,34 +16,28 @@ export default class LoginController extends Controller {
   async login(e) {
     e.preventDefault();
     try {
-      const loginBody = {
-        "Username": this.username,
-        "Password": this.password
-      };
-      const loginOptions = {
-        url: 'http://localhost:8000/login',
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(loginBody)
-      }
-      console.log(loginOptions.body)
+      const loginUrl = '/login';
 
-      axios.request(loginOptions)
-        .then((response) => {
-          if (response.ok) {
-          // put userguid in here
-          this.username = '';
-          this.password = '';
-          this.router.transitionTo('home');
-          return;
+      const response = await axios.post(
+        loginUrl,
+        {
+          "Username": this.username,
+          "Password": this.password,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
           }
-        })
-        .catch((error) => {
-          throw new Error(error);
-        });
+        }
+      );
+      if (response.status === 200) {
+        //put userguid in here
+        this.session.data.authenticated.token = response.data.UserGuid;
+        this.username = '';
+        this.password = '';
+        //this.router.transitionTo('home');
+        return;
+      }
     } catch (error) {
       this.error = error;
       throw new Error(error);
