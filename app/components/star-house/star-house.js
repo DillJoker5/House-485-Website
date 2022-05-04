@@ -23,13 +23,14 @@ export default class StarHouseComponent extends Component {
                     "Price": 1, // dynamically get this
                     "HouseLocation": address,
                     "Distance": 1,
-                    "UserGuid": "cdd6d710-9b59-41b2-8e8a-776bdedfab12", // dynamically get this
+                    "UserGuid": this.session.data.authenticated.token,
                     "UserId": 1, // dynamically get this
                     "Favorite": favorite
                 },
                 {
                     headers: {
                         'Content-Type': 'application/json',
+                        "UserGuid": this.session.data.authenticated.token,
                     }
                 }
             )

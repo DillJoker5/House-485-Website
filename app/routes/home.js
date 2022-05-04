@@ -2,8 +2,10 @@ import Route from '@ember/routing/route';
 import axios from 'axios';
 import { later } from '@ember/runloop';
 import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default class HomeRoute extends Route {
+  @service session;
 
   async model() {
     // Real API Request
@@ -87,7 +89,7 @@ export default class HomeRoute extends Route {
         return data[0].map((model) => {
           let id = model.property_id;
           let attributes = model;
-          let location, address, image, price, lat, lng, favorite, sold;
+          let location, address, image, price, lat, lng, favorite;
         
           address = attributes.address.line + ', ' + attributes.address.city + ', ' + attributes.address.state_code + ' ' + attributes.address.postal_code;
           location = attributes.address.line + ', ' + attributes.address.city + '(' + attributes.address.county + '), ' + attributes.address.state + '(' + attributes.address.state_code + ') ' + attributes.address.postal_code + ', United States , ' + attributes.address.lat + ' ' + attributes.address.lon;
@@ -101,13 +103,12 @@ export default class HomeRoute extends Route {
           let favoriteRow = favoriteData.filter((favorite) => favorite.HouseLocation == address);
           if (favoriteRow.length) {
             favorite = true;
-            sold = false;
           }
           else {
             favorite = false;
           }
         
-          housesModel.push({ id, address, location, image, price, lat, lng, favorite, sold, attributes });
+          housesModel.push({ id, address, location, image, price, lat, lng, favorite, attributes });
         });
       }
     }, 3000);
@@ -127,7 +128,7 @@ export default class HomeRoute extends Route {
         model = model.properties[0]
         let id = model.property_id;
         let attributes = model;
-        let location, address, image, price, lat, lng, favorite, sold;
+        let location, address, image, price, lat, lng, favorite;
 
         address = attributes.address.line + ', ' + attributes.address.city + ', ' + attributes.address.state_code + ' ' + attributes.address.postal_code;
         location = attributes.address.line + ', ' + attributes.address.city + '(' + attributes.address.county + '), ' + attributes.address.state + '(' + attributes.address.state_code + ') ' + attributes.address.postal_code + ', ' + attributes.address.country + ', ' + attributes.address.lat + ' ' + attributes.address.lon;
@@ -139,7 +140,6 @@ export default class HomeRoute extends Route {
         let favoriteRow = favoriteData.filter((favorite) => favorite.HouseLocation == address);
         if (favoriteRow.length) favorite = true;
         else favorite = false;
-        sold = false;
 
         return { id, address, location, image, price, lat, lng, favorite, attributes };
       });

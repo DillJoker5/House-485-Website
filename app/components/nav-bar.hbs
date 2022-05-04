@@ -1,22 +1,22 @@
 <nav class="menu">
     <div class="links">
-        <LinkTo @route="home" class="menu-index">
+        <LinkTo @route="home" class="menu-index" {{on "click" this.checkSessionToken}}>
             Home
         </LinkTo>
-        <LinkTo @route="about" class="menu-about">
+        <LinkTo @route="about" class="menu-about" {{on "click" this.checkSessionToken}}>
             About Us
         </LinkTo>
-        <LinkTo @route="contact" class="menu-contact">
+        <LinkTo @route="contact" class="menu-contact" {{on "click" this.checkSessionToken}}>
             Contact Us
         </LinkTo>
-        {{#if this.checkSessionToken}}
+        {{#if this.isLoggedIn}}
             <LinkTo @route="logout" {{on "click" this.logout}}>Logout</LinkTo>
         {{else}}
-            <LinkTo @route="login" class="menu-login">
+            <LinkTo @route="login" class="menu-login" {{on "click" this.checkSessionToken}}>
                 Login
             </LinkTo>
         {{/if}}
-        <LinkTo @route="bookmark" class="menu-bookmark">
+        <LinkTo @route="bookmark" class="menu-bookmark" {{on "click" this.checkSessionToken}}>
             Bookmarks
         </LinkTo>
     </div>

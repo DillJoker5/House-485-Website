@@ -31,12 +31,10 @@ export default class LoginController extends Controller {
         }
       );
       if (response.status === 200) {
-        //put userguid in here
         this.session.data.authenticated.token = response.data.UserGuid;
         this.username = '';
         this.password = '';
-        //this.router.transitionTo('home');
-        return;
+        this.router.transitionTo('home');
       }
     } catch (error) {
       this.error = error;
