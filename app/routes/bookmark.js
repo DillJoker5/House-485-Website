@@ -20,13 +20,13 @@ export default class BookmarkRoute extends Route {
             const response = await axios.post(
                 bookmarkUrl,
                 {
-                    "UserId": 1, // dynamically get this
-                    "UserGuid": this.session.data.authenticated.token,
+                    "UserId": this.session.data.authenticated.token[1],
+                    "UserGuid": this.session.data.authenticated.token[0],
                 },
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        "UserGuid": this.session.data.authenticated.token,
+                        "UserGuid": this.session.data.authenticated.token[0],
                     }
                 }
             );

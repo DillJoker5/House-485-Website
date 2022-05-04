@@ -31,7 +31,7 @@ export default class LoginController extends Controller {
         }
       );
       if (response.status === 200) {
-        this.session.data.authenticated.token = response.data.UserGuid;
+        this.session.data.authenticated.token = [ response.data.UserGuid, response.data.UserId ];
         this.username = '';
         this.password = '';
         this.router.transitionTo('home');

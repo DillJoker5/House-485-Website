@@ -12,7 +12,9 @@ export default class NavBarComponent extends Component {
     @action
     checkSessionToken() {
         if (this.session.data.authenticated.token !== undefined) {
-            this.isLoggedIn = true;
+            if (this.session.data.authenticated.token.length === 2) {
+                this.isLoggedIn = true;
+            }
         } else {
             this.isLoggedIn = false;
         }
@@ -26,15 +28,13 @@ export default class NavBarComponent extends Component {
             const response = await axios.post(
                 logoutUrl,
                 {
-                    "SessionId": 80002, // dynamically get this
-                    "UserId": 4, // dynamically get this
-                    "UserGuid": this.session.data.authenticated.token,
+                    "UserGuid": this.session.data.authenticated.token[0],
                     "IsActive": true,
                 },
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        "UserGuid": this.session.data.authenticated.token,
+                        "UserGuid": this.session.data.authenticated.token[0],
                     }
                 }
             );

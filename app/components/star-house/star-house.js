@@ -13,24 +13,24 @@ export default class StarHouseComponent extends Component {
     @action
     async changeFavoriteValue() {
         try {
-            let { address, favorite } = this.args;
+            let { address, favorite, price } = this.args;
             favorite = !favorite;
             const favoriteUrl = '/updateFavorite';
 
             const response = await axios.post(
                 favoriteUrl,
                 {
-                    "Price": 1, // dynamically get this
+                    "Price": price,
                     "HouseLocation": address,
-                    "Distance": 1,
-                    "UserGuid": this.session.data.authenticated.token,
-                    "UserId": 1, // dynamically get this
+                    "Distance": Math.random()*499,
+                    "UserGuid": this.session.data.authenticated.token[0],
+                    "UserId": this.session.data.authenticated.token[1],
                     "Favorite": favorite
                 },
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        "UserGuid": this.session.data.authenticated.token,
+                        "UserGuid": this.session.data.authenticated.token[0],
                     }
                 }
             )
