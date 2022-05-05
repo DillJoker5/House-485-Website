@@ -37,7 +37,7 @@ export default class BookmarkRoute extends Route {
             }
 
             // if this user id matches any id in bookmarkResponse
-            let userId = '1';
+            let userId = this.session.data.authenticated.token[1];
             let data = [];
 
             for(let i = 0; i < bookmarkData.length; i++) {
@@ -60,9 +60,7 @@ export default class BookmarkRoute extends Route {
                 return { id, price, distance, address, favorite, attributes };
             });
 
-        } catch(error) {
-            throw new Error(error);
-        }
+        } catch(err) {}
     }
 
     @action

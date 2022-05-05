@@ -2,17 +2,20 @@ import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
-export default class HomeController extends Controller{
+export default class HomeController extends Controller {
     @tracked loadBookmarkComponent;
+    @tracked error;
 
     @action
     loadHouses() {
         const model = this.get('model');
         if (model && model.length > 0) {
-        this.loadBookmarkComponent = true;
+            this.error = '';
+            this.loadBookmarkComponent = true;
         }
         else {
-        this.loadBookmarkComponent = false
+            this.error = 'No bookmarks attached to your account.';
+            this.loadBookmarkComponent = false
         }
     }
 

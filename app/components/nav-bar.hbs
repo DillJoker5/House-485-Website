@@ -1,4 +1,4 @@
-<nav class="menu">
+<nav class="menu" {{on "load" this.checkSessionToken}}>
     <div class="links">
         <LinkTo @route="home" class="menu-index" {{on "click" this.checkSessionToken}}>
             Home

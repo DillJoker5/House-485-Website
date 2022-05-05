@@ -25,7 +25,7 @@ export default class HomeRoute extends Route {
       },
       headers: {
         'X-RapidAPI-Host': 'realty-in-us.p.rapidapi.com',
-        'X-RapidAPI-Key': 'a6f584853emsh737a9117f7a4efdp19384bjsn17b25d26223a'
+        'X-RapidAPI-Key': '288b065a66msh365398d4ed7716ep150ff1jsn97f8529b3312'
       }
     };
 
@@ -42,7 +42,7 @@ export default class HomeRoute extends Route {
           },
           headers: {
             'X-RapidAPI-Host': 'realty-in-us.p.rapidapi.com',
-            'X-RapidAPI-Key': 'a6f584853emsh737a9117f7a4efdp19384bjsn17b25d26223a'
+            'X-RapidAPI-Key': '288b065a66msh365398d4ed7716ep150ff1jsn97f8529b3312'
           }
         };
 

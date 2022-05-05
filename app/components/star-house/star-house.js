@@ -34,9 +34,7 @@ export default class StarHouseComponent extends Component {
                     }
                 }
             )
-            if (response.status === 200) {
-                this.getFavoriteValue();
-            }
+            if (response.status !== 200) {}
         } catch(error) {
             throw new Error(error);
         }
