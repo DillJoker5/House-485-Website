@@ -26,7 +26,6 @@ module('Integration | Login', function (hooks) {
     await click('.login form .button');
 
     let formElement = document.querySelectorAll('form');
-    console.log(formElement)
 
     assert.equal(formElement.length, 3);
   });

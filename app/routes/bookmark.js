@@ -5,72 +5,62 @@ import { action } from '@ember/object';
 
 export default class BookmarkRoute extends Route {
     @service session;
+    @service router;
 
-    beforeModel(transition) {
-        //this.session.requireAuthentication(transition, 'login')
+    beforeModel() {
+        if (this.session.data.authenticated.token === undefined) {
+            this.router.transitionTo('login');
+        }
     }
     async model() {
-        let bookmarkData = [];
-        const bookmarkBody = {
-            "UserId": 1,
-            "UserGuid": "cdd6d710-9b59-41b2-8e8a-776bdedfab12"
-        };
-        const bookmarkOptions = {
-            method: 'POST',
-            mode: 'no-cors',
-            url: 'http://localhost:8000/favorite',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: bookmarkBody
-        }
+        try {
+            let bookmarkData = [];
+            const bookmarkUrl = '/favorite';
 
-        axios.request(bookmarkOptions)
-            .then((response) => {
-                for(let i=0; i < response.data.length; i++) {
-                    bookmarkData.push(response.data[i]);
+            const response = await axios.post(
+                bookmarkUrl,
+                {
+                    "UserId": this.session.data.authenticated.token[1],
+                    "UserGuid": this.session.data.authenticated.token[0],
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "UserGuid": this.session.data.authenticated.token[0],
+                    }
                 }
-            })
-            .catch((error) => {
-                throw new Error(error);
-            });
-        // grab house data from api
-        let homeModel = this.modelFor('home');
-
-        // if this user id matches any id in bookmarkResponse
-        let userId = '';
-        let data = [];
-
-        for(let i = 0; i < bookmarkData.length; i++) {
-            bookmarkUserId = bookmarkData[i].UserId;
-            if (userId == bookmarkUserId) {
-                data.push(homeModel[i]);
-            } else continue;
-        }
-
-
-        return data.map((model) => {
-            model = model.properties[0]
-            let id = model.property_id;
-            let attributes = model;
-            let location, address, image, price, lat, lng, favorite, sold;
-    
-            address = attributes.address.line + ', ' + attributes.address.city + ', ' + attributes.address.state_code + ' ' + attributes.address.postal_code;
-            location = attributes.address.line + ', ' + attributes.address.city + '(' + attributes.address.county + '), ' + attributes.address.state + '(' + attributes.address.state_code + ') ' + attributes.address.postal_code + ', ' + attributes.address.country + ', ' + attributes.address.lat + ' ' + attributes.address.lon;
-            if (attributes.photos) {
-                image = attributes.photos[0].href;
+            );
+            if (response.status === 200) {
+                for(let i = 0; i < response.data.Data.length; i++) {
+                    bookmarkData.push(response.data.Data[i]);
+                }
             }
-            price = attributes.price;
-            lat = attributes.address.lat;
-            lng = attributes.address.lon;
-            favorite = true;
 
-            let soldRow = homeModel.filter((home) => home.Address == address)
-            if (soldRow) sold = true;
-            else sold = false;
-    
-            return { id, address, location, image, price, lat, lng, favorite, sold, attributes };
-          });
+            // if this user id matches any id in bookmarkResponse
+            let userId = this.session.data.authenticated.token[1];
+            let data = [];
+
+            for(let i = 0; i < bookmarkData.length; i++) {
+                let bookmarkUserId = bookmarkData[i].UserId;
+                if (userId == bookmarkUserId) {
+                    data.push(bookmarkData[i]);
+                } else continue;
+            }
+
+            return data.map((model) => {
+                let attributes = model;
+                let id = model.HouseId;
+                let price, distance, address, favorite;
+
+                price = model.Price;
+                distance = model.Distance;
+                address = model.HouseLocation;
+                favorite = true;
+
+                return { id, price, distance, address, favorite, attributes };
+            });
+
+        } catch(err) {}
     }
 
     @action

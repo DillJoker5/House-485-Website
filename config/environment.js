@@ -26,7 +26,7 @@ module.exports = function (environment) {
   }
 
   ENV.MAPBOX_ACCESS_TOKEN = 'sk.eyJ1IjoiZHRjMTAxIiwiYSI6ImNsMWZiNG9uNTAwcGgzaXRjYTc0MGtiNzcifQ.M8qb4kzgH7XKliz1ERaUtQ';
-  ENV.REALTY_TOKEN = 'a6f584853emsh737a9117f7a4efdp19384bjsn17b25d26223a';
+  ENV.REALTY_TOKEN = '288b065a66msh365398d4ed7716ep150ff1jsn97f8529b3312';
 
   return ENV;
 };

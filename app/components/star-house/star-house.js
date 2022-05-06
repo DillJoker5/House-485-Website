@@ -11,33 +11,32 @@ export default class StarHouseComponent extends Component {
     }
 
     @action
-    changeFavoriteValue() {
-        let { address, favorite } = this.args;
-        favorite = !favorite;
-        const options = {
-            method: 'POST',
-            mode: 'no-cors',
-            url: 'http://localhost:8000/updateFavorite',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: {
-                "Price": 1,
-                "HouseLocation": address,
-                "Distance": 1,
-                "UserGuid": "cdd6d710-9b59-41b2-8e8a-776bdedfab12",
-                "UserId": 1,
-                "Favorite": favorite
-            }
-        }
-        axios.request(options)
-            .then((response) => {
-                if (response.Type === 'Success') {
-                    this.getFavoriteValue();
+    async changeFavoriteValue() {
+        try {
+            let { address, favorite, price } = this.args;
+            favorite = !favorite;
+            const favoriteUrl = '/updateFavorite';
+
+            const response = await axios.post(
+                favoriteUrl,
+                {
+                    "Price": price,
+                    "HouseLocation": address,
+                    "Distance": Math.random()*499,
+                    "UserGuid": this.session.data.authenticated.token[0],
+                    "UserId": this.session.data.authenticated.token[1],
+                    "Favorite": favorite
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "UserGuid": this.session.data.authenticated.token[0],
+                    }
                 }
-            })
-            .catch((error) => {
-                throw new Error(error);
-            });
+            )
+            if (response.status !== 200) {}
+        } catch(error) {
+            throw new Error(error);
+        }
     }
 }

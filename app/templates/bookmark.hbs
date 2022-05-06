@@ -1,5 +1,6 @@
 <App>
     <h1>Welcome to your bookmarks page!</h1>
+    <h3>**Note: Houses on this page may or may not already be sold**</h3>
     <br>
     <hr>
     <div class="houses">
@@ -21,16 +22,41 @@
             <SearchBar::SearchBar @houses={{@model}} @searchString={{this.searchString}} as |results|>
                 {{#if results}}
                     {{#each results as |home|}}
-                        <House @house={{home}} ></House>
-                    {{/each}}
-                {{else}}
-                    {{#each @model as |home|}}
-                        <House @house={{home}} ></House>
+                        <article class="house">
+                            <div class="details">
+                                <div class="details address">
+                                    <li>
+                                        <span>{{home.address}}</span>
+                                    </li>
+                                </div>
+                                <div class="details price">
+                                    <li>
+                                        <span>
+                                            Price : ${{home.price}}
+                                        </span>
+                                    </li>
+                                </div>
+                                <div class="details distance">
+                                    <li>
+                                        <span>
+                                            Distance: {{home.distance}}
+                                        </span>
+                                    </li>
+                                </div>
+                                <div>
+                                    <h3>Bookmark: <StarHouse::StarHouse @address={{home.address}} @favorite={{home.favorite}} @price={{home.price}}/></h3>
+                                </div>
+                            </div>
+                        </article>
                     {{/each}}
                 {{/if}}
             </SearchBar::SearchBar>
         {{else}}
-            <div class="loader"></div>
+            {{#if this.error}}
+                <p class="error"><strong>{{this.error}}</strong></p>
+            {{else}}
+                <div class="loader"></div>
+            {{/if}}
         {{/if}}
     </div>
 </App>
