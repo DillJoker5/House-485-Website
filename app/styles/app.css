@@ -43,6 +43,28 @@ p {
 
 /* Classes */
 
+/* Account */
+.account {
+    width: fit-content;
+    height: fit-content;
+    text-align: center;
+    background-color:#05526A;
+    padding: 25px;
+    margin: auto;
+}
+
+.account-buttons {
+    padding: 20px;
+}
+
+.account a, button {
+    text-decoration: none;
+    padding: 0 15px;
+    color: black;
+    font-size: 20px;
+    font-weight: normal;
+}
+
 /* Button */
 .button {
     padding: 10px 30px 10px;
@@ -454,6 +476,12 @@ p {
         background-image: url('images/homeHero.jpg');
     }
 
+    /* Account */
+    .account {
+        margin: 2vh;
+        padding: 15px;
+    }
+
     /* Menu */
     .menu {
         height: 6em;
@@ -475,7 +503,7 @@ p {
 
     /* Houses */
     .houses label span {
-        font-size: 80%;
+        font-size: 75%;
         margin: 25px auto 10px;
     }
 

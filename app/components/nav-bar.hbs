@@ -1,22 +1,18 @@
-<nav class="menu" {{on "load" this.checkSessionToken}}>
+<nav class="menu">
     <div class="links">
-        <LinkTo @route="home" class="menu-index" {{on "click" this.checkSessionToken}}>
+        <LinkTo @route="home" class="menu-index">
             Home
         </LinkTo>
-        <LinkTo @route="about" class="menu-about" {{on "click" this.checkSessionToken}}>
+        <LinkTo @route="about" class="menu-about">
             About Us
         </LinkTo>
-        <LinkTo @route="contact" class="menu-contact" {{on "click" this.checkSessionToken}}>
+        <LinkTo @route="contact" class="menu-contact">
             Contact Us
         </LinkTo>
-        {{#if this.isLoggedIn}}
-            <LinkTo @route="logout" {{on "click" this.logout}}>Logout</LinkTo>
-        {{else}}
-            <LinkTo @route="login" class="menu-login" {{on "click" this.checkSessionToken}}>
-                Login
-            </LinkTo>
-        {{/if}}
-        <LinkTo @route="bookmark" class="menu-bookmark" {{on "click" this.checkSessionToken}}>
+        <LinkTo @route="account" class="menu-account">
+            Account
+        </LinkTo>
+        <LinkTo @route="bookmark" class="menu-bookmark">
             Bookmarks
         </LinkTo>
     </div>
