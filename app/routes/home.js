@@ -86,7 +86,7 @@ export default class HomeRoute extends Route {
       throw new Error(error);
     });
 
-    // Grab Favorite Data
+    // Grab favorite data from House table
 
     // Create an array to store all of the favorite houses
     let favoriteData = [];
@@ -101,62 +101,94 @@ export default class HomeRoute extends Route {
       },
     }
 
+    // Send api request to the read houses endpoint
     axios.request(favoriteOptions)
       .then((response) => {
+        // If the response came back, push all of the response data to the favorite data array
         for(let i = 0; i < response.data.length; i++) {
+          // Append each house to the favorite data array
           favoriteData.push(response.data[i])
         }
       })
       .catch((error) => {
+        // Throw a new error if one is found
         throw new Error(error);
       });
 
+    // Create a later block to execute the code after a certain amount of time has passed
     later(() => {
+      // If the length of the data array is greater than 0
       if(data.length > 0) {
+        // Setup return block to return the data to the route's model
         return data[0].map((model) => {
+          // Setup variables for the id, attributes, and all other display variables for the houses in the home page
           let id = model.property_id;
           let attributes = model;
           let location, address, image, price, lat, lng, favorite;
         
+          // Setup the address and location variable
           address = attributes.address.line + ', ' + attributes.address.city + ', ' + attributes.address.state_code + ' ' + attributes.address.postal_code;
           location = attributes.address.line + ', ' + attributes.address.city + '(' + attributes.address.county + '), ' + attributes.address.state + '(' + attributes.address.state_code + ') ' + attributes.address.postal_code + ', United States , ' + attributes.address.lat + ' ' + attributes.address.lon;
+          
+          // If there is any photos from the photos array from the Realty in US api endpoints
           if (attributes.photos) {
+            // Save the first image's link to the image variable
             image = attributes.photos[0].href;
           }
+
+          // Setup the price, latitude, and longitude variables
           price = attributes.price;
           lat = attributes.address.lat;
           lng = attributes.address.lon;
 
+          // Filter the favorite data to see if the current address is in the favorite data array
           let favoriteRow = favoriteData.filter((favorite) => favorite.HouseLocation == address);
+
+          // If a row is found then setup logic accordingly
           if (favoriteRow.length) {
+            // Set the favorite variable to true if a row is found
             favorite = true;
           }
           else {
+            // Set the favorite variable to false if a row is not found
             favorite = false;
           }
         
+          // Push all of the variables to the housesModel array as a single object
           housesModel.push({ id, address, location, image, price, lat, lng, favorite, attributes });
         });
       }
     }, 3000);
     
+    // Return the housesModel as an object for the route's model
     return { housesModel };
 
     // Fake Data API Request
+
+    // Setup mock request booleans for the fake data
     /*let requestOneSuccess = false;
     let requestTwoSuccess = false;
 
+    // Grab the fake data response from the realtyApi folder
     let response = await fetch('/realtyAPI/houses.json');
+
+    // Await the response to grab it in its json format
     let data = await response.json();
+
+    // Set both of the mock request boolean variables to true
     requestOneSuccess = requestTwoSuccess = true; 
 
+    // If both of the mock request boolean variables are treu then return the route's model
     if (requestOneSuccess && requestTwoSuccess) {
+      // Setup the return block for the fake data for the route's model
       return data.map((model) => {
+        // Setup variables for the model, id, attributes, and all other display variables for the fake data houses in the home page
         model = model.properties[0]
         let id = model.property_id;
         let attributes = model;
         let location, address, image, price, lat, lng, favorite;
 
+        // Setup the address, location, price, image, latitude, and longitude variables
         address = attributes.address.line + ', ' + attributes.address.city + ', ' + attributes.address.state_code + ' ' + attributes.address.postal_code;
         location = attributes.address.line + ', ' + attributes.address.city + '(' + attributes.address.county + '), ' + attributes.address.state + '(' + attributes.address.state_code + ') ' + attributes.address.postal_code + ', ' + attributes.address.country + ', ' + attributes.address.lat + ' ' + attributes.address.lon;
         image = attributes.photos[0].href;
@@ -164,10 +196,13 @@ export default class HomeRoute extends Route {
         lat = attributes.address.lat;
         lng = attributes.address.lon;
 
+        // Filter the favorite data to see if the current address is in the favorite data array
         let favoriteRow = favoriteData.filter((favorite) => favorite.HouseLocation == address);
-        if (favoriteRow.length) favorite = true;
-        else favorite = false;
 
+        if (favoriteRow.length) favorite = true; // Set the favorite variable to true if a row is found
+        else favorite = false; // Set the favorite variable to false if a row is not found
+
+        // Return all of the above variables as a single object for the route's model
         return { id, address, location, image, price, lat, lng, favorite, attributes };
       });
     }*/
