@@ -1,12 +1,17 @@
+// House Integration Tests
+
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | house', function (hooks) {
+  // Setup the rendering hooks
   setupRenderingTest(hooks);
 
+  // Test to verify that the correct information is rendered about a house
   test('it renders information about a house', async function (assert) {
+    // Set the component properties to a house with fake data
     this.setProperties({
       house: {
         image: "https://ap.rdcpix.com/07674588a0d1ecd7ecbce450d5f64d78l-m2859139786x.jpg",
@@ -41,15 +46,21 @@ module('Integration | Component | house', function (hooks) {
       }
     });
 
+    // Await till the component renders
     await render(hbs`<House @house={{this.house}} />`);
 
+    // Verify that the basic elements of the house component exists
     assert.dom('article').hasClass('house');
     assert.dom('article .image').exists();
     assert.dom('article h3').exists();
+
+    // Verify that the basic elements of the house component includes the correct text
     assert.dom('article .detail.address').includesText('3454 N Bremen St, Milwaukee, WI 53212');
     assert.dom('article .detail.price').includesText('$250000');
     assert.dom('article .detail.location').includesText('3454 N Bremen St, Milwaukee (Milwaukee), Wisconsin (WI) 53212, United States, 43.080845 -87.89972');
     assert.dom('article .detail.description').includesText('Prime Riverwest location blocks from restaurants, parks, the Milwaukee River, the dog park and much much more. This super cute bungalow duplex is a great opportunity for an owner occupant or investor. Both units have hardwood floors, 2 bedrooms and 1 bath. Nice back yard & 2 car detached garage. This is one of the nicest blocks in Riverwest.');
+    
+    // Verify that the elements for the star house and map components exist
     assert.dom('article .map').exists();
     assert.dom('article h3').exists();
   });
