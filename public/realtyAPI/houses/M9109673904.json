@@ -1,0 +1,26 @@
+{
+    "properties": [
+        {
+            "property_id": "M9109673904",
+            "price": 69000,
+            "address": {
+                "city": "Milwaukee",
+                "country": "United States",
+                "county": "Milwaukee",
+                "lat": 43.143661,
+                "line": "6932 N Raintree Dr Unit B",
+                "postal_code": "53223",
+                "state_code": "WI",
+                "state": "Wisconsin",
+                "lon": -87.983248
+            },
+            "rdc_web_url": "https://www.realtor.com/realestateandhomes-detail/6932-N-Raintree-Dr-Unit-B_Milwaukee_WI_53223_M91096-73904",
+            "description": "LIMITED PICTURES, BOOK A SHOWING",
+            "photos": [
+                {
+                    "href": "https://ap.rdcpix.com/857c4bf97321ad28384c901c76f7a0d8l-m3110109346x.jpg"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "properties": [
+        {
+            "property_id": "M9860593060",
+            "price": 169900,
+            "address": {
+                "city": "Milwaukee",
+                "country": "United States",
+                "county": "Milwaukee",
+                "lat": 43.142911,
+                "line": "5804 W Boehlke Ave",
+                "postal_code": "53223",
+                "state_code": "WI",
+                "state": "Wisconsin",
+                "lon": -87.984637
+            },
+            "rdc_web_url": "https://www.realtor.com/realestateandhomes-detail/5804-W-Boehlke-Ave_Milwaukee_WI_53223_M98605-93060",
+            "description": "Welcome Home! Ready to move in 3 bedroom ranch on quiet dead end street of Milwaukee!! This home boasts hardwood floors, extra half bath with access from master, newer appliances, clean basement with rec room, huge garage and driveway access.",
+            "photos": [
+                {
+                    "href": "https://ap.rdcpix.com/646b5f5d8099fe39f70040973471a6dfl-m4192583232x.jpg"
+                }
+            ]
+        }
+    ]
+}

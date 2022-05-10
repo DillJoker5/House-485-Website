@@ -1,0 +1,26 @@
+{
+    "properties": [
+        {
+            "property_id": "M9280798386",
+            "price": 129900,
+            "address": {
+                "city": "Milwaukee",
+                "country": "United States",
+                "county": "Milwaukee",
+                "lat": 43.124697,
+                "line": "5866 N 77th St",
+                "postal_code": "53218",
+                "state_code": "WI",
+                "state": "Wisconsin",
+                "lon": -88.006957
+            },
+            "rdc_web_url": "https://www.realtor.com/realestateandhomes-detail/5866-N-77th-St_Milwaukee_WI_53218_M92807-98386",
+            "description": "Home though move in ready will need some TLC. Come see this adorable 3BR ranch. Fenced in yard. Clean inside and out. Kept in good condition. Basement is finished with extra room for storage and laundry area.",
+            "photos": [
+                {
+                    "href": "https://ap.rdcpix.com/9d3a09b054c893a5a59d4c3448959bd7l-m1787232611x.jpg"
+                }
+            ]
+        }
+    ]
+}

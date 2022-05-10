@@ -1,51 +1,39 @@
+// Environment File
+
 'use strict';
 
 module.exports = function (environment) {
+  // Setup basics of the environment
   let ENV = {
     modulePrefix: 'house-485-website',
     environment,
     rootURL: '/',
     locationType: 'history',
     EmberENV: {
-      FEATURES: {
-        // Here you can enable experimental features on an ember canary build
-        // e.g. EMBER_NATIVE_DECORATOR_SUPPORT: true
-      },
+      FEATURES: {},
       EXTEND_PROTOTYPES: {
-        // Prevent Ember Data from overriding Date.parse.
         Date: false,
       },
     },
 
-    APP: {
-      // Here you can pass flags/options to your application instance
-      // when it is created
-    },
+    APP: {},
   };
 
-  if (environment === 'development') {
-    // ENV.APP.LOG_RESOLVER = true;
-    // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
-    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    // ENV.APP.LOG_VIEW_LOOKUPS = true;
-  }
-
+  // If the environment is test then setup some features of the environment
   if (environment === 'test') {
-    // Testem prefers this...
+    // Setup location, log generation, and log lookups
     ENV.locationType = 'none';
-
-    // keep test console output quieter
     ENV.APP.LOG_ACTIVE_GENERATION = false;
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
+    // Setup root element and autoboot
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
   }
 
-  if (environment === 'production') {
-    // here you can enable a production-specific feature
-  }
+  // Setup access tokens for both the Realty in US and Mapbox apis
+  ENV.MAPBOX_ACCESS_TOKEN = 'sk.eyJ1IjoiZHRjMTAxIiwiYSI6ImNsMWZiNG9uNTAwcGgzaXRjYTc0MGtiNzcifQ.M8qb4kzgH7XKliz1ERaUtQ';
+  ENV.REALTY_TOKEN = '288b065a66msh365398d4ed7716ep150ff1jsn97f8529b3312';
 
   return ENV;
 };

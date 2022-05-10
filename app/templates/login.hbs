@@ -1,0 +1,19 @@
+{{#if this.error}}
+    <p class="error"><strong>{{this.error}}</strong></p>
+{{/if}}
+<div class="login">
+    <br>
+    <p>No Account: </p><LinkTo @route="register" class="button" >Register Here</LinkTo>
+    <br>
+    <h1>Log into your account</h1>
+    <br>
+    <form autocomplete="off" method="post" class="login-form" {{on "submit" this.login }}>
+        <label for="loginUserName">UserName: </label>
+        <input type="text" id="loginUserName" name="username" required {{on "change" (fn this.update "username") }} />
+        <br>
+        <label for="loginPassword">Password: </label>
+        <input type="password" id="loginPassword" name="password" required {{on "change" (fn this.update "password") }} />
+        <br>
+        <input type="submit" id="submitButton" value="Login" class="button" />
+    </form>
+</div>
