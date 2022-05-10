@@ -59,7 +59,7 @@ export default class BookmarkRoute extends Route {
                 // Create a variable for the bookmark's user id
                 let bookmarkUserId = bookmarkData[i].UserId;
 
-                // if this user id matches any id in bookmarkResponse, push the current bookmark to the data array
+                // If this user id matches any id in bookmarkResponse, push the current bookmark to the data array
                 if (userId == bookmarkUserId) {
                     // Push the current bookmark into the data array
                     data.push(bookmarkData[i]);

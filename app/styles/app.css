@@ -149,8 +149,8 @@ p {
 }
 
 .house input {
-    width: auto;
-    display: inline-block;
+    width: auto !important;
+    display: inline-block !important;
 }
 
 .house .image {

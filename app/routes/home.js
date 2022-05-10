@@ -73,7 +73,7 @@ export default class HomeRoute extends Route {
             // Throw a new error if one was found
             throw new Error(error);
           });
-        }, 1000)
+        }, 3000)
       }
 
       // If the houseResponse is fully built out push the entire properties array in the data array

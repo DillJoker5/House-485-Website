@@ -18,8 +18,8 @@ You will need the following things properly installed and working on your device
 * Run the [House-485-Database](https://github.com/DillJoker5/House-485-Database) and the [House-485-Backend](https://github.com/DillJoker5/House-485-Backend). See [here](https://github.com/DillJoker5/House-485-Database) for help running the database and see [here](https://github.com/DillJoker5/House-485-Backend) for help running the backend project.
 * Open a new terminal in the directory of the repository
 * Before running the repository, please run the following npm command: npm install
-* In the same terminal, run the following command to start the website: ember serve(or s). Build and Run commands are shown below.
-* Optional: To run the tests, run the following command in a terminal in the repository directory: ember t or ember t -s. Testing commands are shown below.
+* In the same terminal, run the following command to start the website: ember serve(or s). Build and Run commands are shown below
+* Optional: To run the tests, run the following command in a terminal in the repository directory: ember t or ember t -s. Testing commands are shown below
 
 ### Installation Commands
 * `git clone <repository-url>` this repository

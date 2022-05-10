@@ -15,7 +15,7 @@ export default class HomeController extends Controller {
         // Grab the model from the route
         const model = this.get('model');
 
-        // if the route's model exist
+        // If the route's model exist
         if (model && model.length > 0) {
             // Set the tracked error to nothing and set the tracked load state to true
             this.error = '';

@@ -49,6 +49,7 @@ module('Acceptance | house 485', function (hooks) {
 
     // Verify that the current url is contact
     assert.equal(currentURL(), 'contact');
+
     // Verify that the contact us image exists
     assert.dom('img').exists();
 
@@ -181,7 +182,7 @@ module('Acceptance | house 485', function (hooks) {
 
     // Verify that the navigation bar exists with the account button
     assert.dom('nav').exists();
-    assert.dom('nav a.menu-account').hasText('account');
+    assert.dom('nav a.menu-account').hasText('Account');
 
     // Verify that the login section exists in the current document
     assert.dom('.login').exists();
